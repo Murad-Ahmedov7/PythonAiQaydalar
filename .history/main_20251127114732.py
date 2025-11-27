@@ -1090,7 +1090,7 @@ import pandas as pd
 # from sklearn.preprocessing import StandardScaler,OneHotEncoder
 
 
-#region Uzun versiya 
+
 # # ------------------------------
 # # 1) MISSING VALUES (NaN) İMPUTATION
 # # ------------------------------
@@ -1338,11 +1338,7 @@ print(r2)
 #
 # print("\nƏn çox təsir edən sütunlar:\n")
 # print(importance.head(10))
-#endregion
 
-
-
-#region Qisa versiya
 
 # 1️⃣ Dataset və target
 
@@ -1419,22 +1415,6 @@ print(r2)
 # Kod bütün preprocessing-i avtomatik edir → NaN-ları doldurur, scale edir, one-hot encoding tətbiq edir
 
 # Model təlim olunub → yeni input üçün qiymət təxmin edir
-
-
-# StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
-
-
-
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
-
-
-#endregion
-
 
 
 

@@ -1090,7 +1090,7 @@ import pandas as pd
 # from sklearn.preprocessing import StandardScaler,OneHotEncoder
 
 
-#region Uzun versiya 
+
 # # ------------------------------
 # # 1) MISSING VALUES (NaN) İMPUTATION
 # # ------------------------------
@@ -1338,102 +1338,6 @@ print(r2)
 #
 # print("\nƏn çox təsir edən sütunlar:\n")
 # print(importance.head(10))
-#endregion
-
-
-
-#region Qisa versiya
-
-# 1️⃣ Dataset və target
-
-# Input features (X) → Rooms, Area_m2, Floor, YearBuilt, District, BuildingType
-
-# Target (y) → Price_AZN (proqnoz etmək istədiyimiz qiymət)
-
-# 2️⃣ Feature növləri
-
-# Numeric (rəqəmli) → Rooms, Area_m2, Floor, YearBuilt
-
-# Categorical (kateqorik) → District, BuildingType
-
-# 3️⃣ Data preprocessing (ön emal)
-
-# Numeric pipeline:
-
-# SimpleImputer(strategy='median') → NaN-ları median ilə doldurur
-
-# StandardScaler() → bütün rəqəmləri standartlaşdırır (mean=0, std=1)
-
-# Categorical pipeline:
-
-# SimpleImputer(strategy='most_frequent') → NaN-ları ən çox təkrarlanan dəyərlə doldurur
-
-# OneHotEncoder(handle_unknown='ignore') → hər kateqoriyanı 0/1 sütunlarına çevirir
-
-# Bütün sütunları birləşdirir: ColumnTransformer
-
-# 4️⃣ Model
-
-# Linear Regression → bir neçə input feature-dan price-i proqnoz edir
-
-# Pipeline-da həm preprocessing, həm model bir yerdədir
-
-# 5️⃣ Train/Test split
-
-# train_test_split(test_size=0.2) → 80% train, 20% test
-
-# Random state 42 → nəticə təkrar olunur
-
-# 6️⃣ Model öyrədilməsi
-# model.fit(X_train, y_train)
-
-
-# Pipeline avtomatik olaraq:
-
-# Numeric və categorical preprocessing edir
-
-# Linear Regression-i öyrədir
-
-# 7️⃣ Performance ölçüləri
-
-# MAE → orta abs(xəta)
-
-# MSE → orta kvadrat xətası
-
-# R² → modelin izahat gücü (1.0 yaxşı, 0.0 pis)
-
-# mae=mean_absolute_error(y_test,pred)
-# mse=mean_squared_error(y_test,pred)
-# r2=r2_score(y_test,pred)
-
-# 8️⃣ Yeni məlumatdan proqnoz
-
-# İstifadəçi input verir: Rooms, Area_m2, District, BuildingType, Floor, YearBuilt
-
-# Yeni DataFrame yaradılır → model.predict(new_df) ilə price təxmin olunur
-
-# 9️⃣ Nəticə
-
-# Pipeline + Linear Regression → tam ML workflow
-
-# Kod bütün preprocessing-i avtomatik edir → NaN-ları doldurur, scale edir, one-hot encoding tətbiq edir
-
-# Model təlim olunub → yeni input üçün qiymət təxmin edir
-
-
-# StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
-
-
-
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
-
-
-#endregion
 
 
 

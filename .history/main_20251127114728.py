@@ -1090,7 +1090,7 @@ import pandas as pd
 # from sklearn.preprocessing import StandardScaler,OneHotEncoder
 
 
-#region Uzun versiya 
+
 # # ------------------------------
 # # 1) MISSING VALUES (NaN) İMPUTATION
 # # ------------------------------
@@ -1338,103 +1338,83 @@ print(r2)
 #
 # print("\nƏn çox təsir edən sütunlar:\n")
 # print(importance.head(10))
-#endregion
 
 
+1️⃣ Dataset və target
 
-#region Qisa versiya
+Input features (X) → Rooms, Area_m2, Floor, YearBuilt, District, BuildingType
 
-# 1️⃣ Dataset və target
+Target (y) → Price_AZN (proqnoz etmək istədiyimiz qiymət)
 
-# Input features (X) → Rooms, Area_m2, Floor, YearBuilt, District, BuildingType
+2️⃣ Feature növləri
 
-# Target (y) → Price_AZN (proqnoz etmək istədiyimiz qiymət)
+Numeric (rəqəmli) → Rooms, Area_m2, Floor, YearBuilt
 
-# 2️⃣ Feature növləri
+Categorical (kateqorik) → District, BuildingType
 
-# Numeric (rəqəmli) → Rooms, Area_m2, Floor, YearBuilt
+3️⃣ Data preprocessing (ön emal)
 
-# Categorical (kateqorik) → District, BuildingType
+Numeric pipeline:
 
-# 3️⃣ Data preprocessing (ön emal)
+SimpleImputer(strategy='median') → NaN-ları median ilə doldurur
 
-# Numeric pipeline:
+StandardScaler() → bütün rəqəmləri standartlaşdırır (mean=0, std=1)
 
-# SimpleImputer(strategy='median') → NaN-ları median ilə doldurur
+Categorical pipeline:
 
-# StandardScaler() → bütün rəqəmləri standartlaşdırır (mean=0, std=1)
+SimpleImputer(strategy='most_frequent') → NaN-ları ən çox təkrarlanan dəyərlə doldurur
 
-# Categorical pipeline:
+OneHotEncoder(handle_unknown='ignore') → hər kateqoriyanı 0/1 sütunlarına çevirir
 
-# SimpleImputer(strategy='most_frequent') → NaN-ları ən çox təkrarlanan dəyərlə doldurur
+Bütün sütunları birləşdirir: ColumnTransformer
 
-# OneHotEncoder(handle_unknown='ignore') → hər kateqoriyanı 0/1 sütunlarına çevirir
+4️⃣ Model
 
-# Bütün sütunları birləşdirir: ColumnTransformer
+Linear Regression → bir neçə input feature-dan price-i proqnoz edir
 
-# 4️⃣ Model
+Pipeline-da həm preprocessing, həm model bir yerdədir
 
-# Linear Regression → bir neçə input feature-dan price-i proqnoz edir
+5️⃣ Train/Test split
 
-# Pipeline-da həm preprocessing, həm model bir yerdədir
+train_test_split(test_size=0.2) → 80% train, 20% test
 
-# 5️⃣ Train/Test split
+Random state 42 → nəticə təkrar olunur
 
-# train_test_split(test_size=0.2) → 80% train, 20% test
-
-# Random state 42 → nəticə təkrar olunur
-
-# 6️⃣ Model öyrədilməsi
-# model.fit(X_train, y_train)
+6️⃣ Model öyrədilməsi
+model.fit(X_train, y_train)
 
 
-# Pipeline avtomatik olaraq:
+Pipeline avtomatik olaraq:
 
-# Numeric və categorical preprocessing edir
+Numeric və categorical preprocessing edir
 
-# Linear Regression-i öyrədir
+Linear Regression-i öyrədir
 
-# 7️⃣ Performance ölçüləri
+7️⃣ Performance ölçüləri
 
-# MAE → orta abs(xəta)
+MAE → orta abs(xəta)
 
-# MSE → orta kvadrat xətası
+MSE → orta kvadrat xətası
 
-# R² → modelin izahat gücü (1.0 yaxşı, 0.0 pis)
+R² → modelin izahat gücü (1.0 yaxşı, 0.0 pis)
 
-# mae=mean_absolute_error(y_test,pred)
-# mse=mean_squared_error(y_test,pred)
-# r2=r2_score(y_test,pred)
+mae=mean_absolute_error(y_test,pred)
+mse=mean_squared_error(y_test,pred)
+r2=r2_score(y_test,pred)
 
-# 8️⃣ Yeni məlumatdan proqnoz
+8️⃣ Yeni məlumatdan proqnoz
 
-# İstifadəçi input verir: Rooms, Area_m2, District, BuildingType, Floor, YearBuilt
+İstifadəçi input verir: Rooms, Area_m2, District, BuildingType, Floor, YearBuilt
 
-# Yeni DataFrame yaradılır → model.predict(new_df) ilə price təxmin olunur
+Yeni DataFrame yaradılır → model.predict(new_df) ilə price təxmin olunur
 
-# 9️⃣ Nəticə
+9️⃣ Nəticə
 
-# Pipeline + Linear Regression → tam ML workflow
+Pipeline + Linear Regression → tam ML workflow
 
-# Kod bütün preprocessing-i avtomatik edir → NaN-ları doldurur, scale edir, one-hot encoding tətbiq edir
+Kod bütün preprocessing-i avtomatik edir → NaN-ları doldurur, scale edir, one-hot encoding tətbiq edir
 
-# Model təlim olunub → yeni input üçün qiymət təxmin edir
-
-
-# StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
-
-
-
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
-
-
-#endregion
-
+Model təlim olunub → yeni input üçün qiymət təxmin edir
 
 
 

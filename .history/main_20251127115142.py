@@ -1421,17 +1421,7 @@ print(r2)
 # Model təlim olunub → yeni input üçün qiymət təxmin edir
 
 
-# StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
-
-
-
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
-
+StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
 
 #endregion
 

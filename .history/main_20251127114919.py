@@ -1342,7 +1342,9 @@ print(r2)
 
 
 
-#region Qisa versiya
+#region
+
+#endregion
 
 # 1️⃣ Dataset və target
 
@@ -1419,22 +1421,6 @@ print(r2)
 # Kod bütün preprocessing-i avtomatik edir → NaN-ları doldurur, scale edir, one-hot encoding tətbiq edir
 
 # Model təlim olunub → yeni input üçün qiymət təxmin edir
-
-
-# StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
-
-
-
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
-
-
-#endregion
-
 
 
 

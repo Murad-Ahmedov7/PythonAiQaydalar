@@ -638,7 +638,6 @@ import pandas as pd
 
 #endregion
 
-
 #region PythonAi6
 
 
@@ -851,229 +850,229 @@ import pandas as pd
 
 #region PythonAi7
 
-# # 1️⃣ Regression nə üçün istifadə olunur?
+# 1️⃣ Regression nə üçün istifadə olunur?
 
-# # Məqsəd: Bir və ya bir neçə müstəqil dəyişən (X) əsasında bir asılı dəyişən (y) proqnoz etmək.
+# Məqsəd: Bir və ya bir neçə müstəqil dəyişən (X) əsasında bir asılı dəyişən (y) proqnoz etmək.
 
-# # Misal:
+# Misal:
 
-# # Ev ölçüsü və otaq sayı → evin qiyməti
+# Ev ölçüsü və otaq sayı → evin qiyməti
 
-# # Reklam xərcləri → satış sayı
+# Reklam xərcləri → satış sayı
 
-# # Temperatur və rütubət → enerji sərfiyyatı
+# Temperatur və rütubət → enerji sərfiyyatı
 
-# # 2️⃣ Regression növləri
+# 2️⃣ Regression növləri
 
-# # Linear Regression (Xətti Regression): y = a*X + b
-# # Ən sadə formadır, nəticə müstəqil dəyişənlərlə xətti əlaqədədir.
+# Linear Regression (Xətti Regression): y = a*X + b
+# Ən sadə formadır, nəticə müstəqil dəyişənlərlə xətti əlaqədədir.
 
-# # Polynomial Regression (Polinomial Regression): y = a*X^2 + b*X + c
-# # X və y arasında xətti olmayan əlaqələr üçün.
+# Polynomial Regression (Polinomial Regression): y = a*X^2 + b*X + c
+# X və y arasında xətti olmayan əlaqələr üçün.
 
-# # Multiple Regression (Çoxlu Regression): Bir neçə X istifadə olunur: y = a1*X1 + a2*X2 + ... + b
+# Multiple Regression (Çoxlu Regression): Bir neçə X istifadə olunur: y = a1*X1 + a2*X2 + ... + b
 
-# # Digər növlər: Ridge, Lasso, Decision Tree Regression, Random Forest Regression və s.
-
-
-# # X → müstəqil dəyişən (input, predictor)
-
-# # y → asılı dəyişən (output, target)
-
-# # a → meyl (slope) – X dəyişdikcə y nə qədər dəyişir
-
-# # b → intercept (kəsilmə nöqtəsi) – X=0 olanda y-nin qiyməti
+# Digər növlər: Ridge, Lasso, Decision Tree Regression, Random Forest Regression və s.
 
 
+# X → müstəqil dəyişən (input, predictor)
 
-# #MAE- Mean Absolute Error-ortalama sehv
-# #y=[100,110,120]
-# #y^=[103,113,124]
-# #MAE=(|103-100|+|113-110|+|124-100|)/3=3.3
+# y → asılı dəyişən (output, target)
 
+# a → meyl (slope) – X dəyişdikcə y nə qədər dəyişir
 
-# # MSE — Mean Squared Error, yəni Ortalama Kvadrat Səhv demək
-
-# #y=[100,110,120]
-# #y^=[103,113,124]
-# #MSE=(|103-100|^2+|113-110|^2+|124-100|^2)/3=3.3/34......
-
-# #R2=1-(3.3/34)=90%  R² Score Modelin nə qədər düzgün proqnoz etdiyini göstərir (0–1 arası)
-
-# # Regression Metrics
+# b → intercept (kəsilmə nöqtəsi) – X=0 olanda y-nin qiyməti
 
 
 
+#MAE- Mean Absolute Error-ortalama sehv
+#y=[100,110,120]
+#y^=[103,113,124]
+#MAE=(|103-100|+|113-110|+|124-100|)/3=3.3
 
-# import numpy as np
+
+# MSE — Mean Squared Error, yəni Ortalama Kvadrat Səhv demək
+
+#y=[100,110,120]
+#y^=[103,113,124]
+#MSE=(|103-100|^2+|113-110|^2+|124-100|^2)/3=3.3/34......
+
+#R2=1-(3.3/34)=90%  R² Score Modelin nə qədər düzgün proqnoz etdiyini göstərir (0–1 arası)
+
+# Regression Metrics
+
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+
+
+
+# “plt” — Python-da matplotlib.pyplot modulunun qısaldılmış adıdır.
+
+# Sən kodda bunu görmüsən:
+
 # import matplotlib.pyplot as plt
-# import pandas as pd
 
 
+# Bu sətr matplotlib.pyplot kitabxanasını plt adı ilə çağırmağa imkan verir.
 
+# 🎯 plt nə üçündür?
 
+# plt istifadə olunur:
 
-# # “plt” — Python-da matplotlib.pyplot modulunun qısaldılmış adıdır.
+# qrafik çəkmək
 
-# # Sən kodda bunu görmüsən:
+# histogram yaratmaq
 
-# # import matplotlib.pyplot as plt
+# scatter plot çəkmək
 
+# x/y oxlarını yazmaq
 
-# # Bu sətr matplotlib.pyplot kitabxanasını plt adı ilə çağırmağa imkan verir.
+# başlıq əlavə etmək
 
-# # 🎯 plt nə üçündür?
+# qrafiki göstərmək
 
-# # plt istifadə olunur:
+# yəni bütün vizualizasiya (qrafik) əməliyyatlarında.
 
-# # qrafik çəkmək
 
-# # histogram yaratmaq
 
-# # scatter plot çəkmək
+from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
 
-# # x/y oxlarını yazmaq
+# mae=mean_absolute_error(price,pred)
+# mse=mean_squared_error(price,pred)
 
-# # başlıq əlavə etmək
+# print(mae)
+# print(mse)
+# r2=r2_score(price,pred)
 
-# # qrafiki göstərmək
 
-# # yəni bütün vizualizasiya (qrafik) əməliyyatlarında.
 
+# while True:
+#     area=int(input("Enter the area of interest: "))
+#     Pred=a*area+b
+#     print(Pred)
 
 
-# from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
 
-# # mae=mean_absolute_error(price,pred)
-# # mse=mean_squared_error(price,pred)
 
-# # print(mae)
-# # print(mse)
-# # r2=r2_score(price,pred)
+# Əlbəttə! Gəlin kovariyant (covariance) anlayışını tam sadə şəkildə izah edək.
 
+# 1️⃣ Kovariyant nədir?
 
+# Kovariyant iki dəyişənin birlikdə necə dəyişdiyini göstərən ölçüdür.
 
-# # while True:
-# #     area=int(input("Enter the area of interest: "))
-# #     Pred=a*area+b
-# #     print(Pred)
+# İki dəyişən eyni istiqamətdə dəyişirsə → kovariyant müsbət olur.
 
+# İki dəyişən əks istiqamətdə dəyişirsə → kovariyant mənfi olur.
 
+# Heç bir əlaqəsi yoxdursa → kovariyant 0-a yaxın olur.
 
 
-# # Əlbəttə! Gəlin kovariyant (covariance) anlayışını tam sadə şəkildə izah edək.
+# 2) Dispersiya nədir?
 
-# # 1️⃣ Kovariyant nədir?
+# Dispersiya bir dəyişənin orta dəyərdən nə qədər uzaqlaşdığını ölçür.
+# Sadə desək, bir sıra dəyərlərin nə qədər “yayılmış” olduğunu göstərir.
 
-# # Kovariyant iki dəyişənin birlikdə necə dəyişdiyini göstərən ölçüdür.
 
-# # İki dəyişən eyni istiqamətdə dəyişirsə → kovariyant müsbət olur.
 
-# # İki dəyişən əks istiqamətdə dəyişirsə → kovariyant mənfi olur.
 
-# # Heç bir əlaqəsi yoxdursa → kovariyant 0-a yaxın olur.
 
+#Gradient Descent
 
-# # 2) Dispersiya nədir?
 
-# # Dispersiya bir dəyişənin orta dəyərdən nə qədər uzaqlaşdığını ölçür.
-# # Sadə desək, bir sıra dəyərlərin nə qədər “yayılmış” olduğunu göstərir.
+# Gradient Descent — Machine Learning modelinin “daha yaxşı cavab” tapmaq üçün təkrarlayaraq özünü düzəltmə metodudur.
 
+# Model səhv edir → səhvin ölçüsü hesablanır → model səhvi azaltmaq üçün kiçik addım dəyişiklik edir → yenidən yoxlanır.
 
 
+# Əla, sən sadə bir Linear Regression (Xətti reqressiya) modelini gradient descent ilə sıfırdan yazmısan
 
+# X=area
+# Y=price
 
-# #Gradient Descent
 
+# m=1300
+# b=80000
+# Y_pred=m*X+b
+# print(Y_pred)
+# L=0.0001    #learning rate
+# epochs=40000
 
-# # Gradient Descent — Machine Learning modelinin “daha yaxşı cavab” tapmaq üçün təkrarlayaraq özünü düzəltmə metodudur.
 
-# # Model səhv edir → səhvin ölçüsü hesablanır → model səhvi azaltmaq üçün kiçik addım dəyişiklik edir → yenidən yoxlanır.
-
-
-# # Əla, sən sadə bir Linear Regression (Xətti reqressiya) modelini gradient descent ilə sıfırdan yazmısan
-
-# # X=area
-# # Y=price
-
-
-# # m=1300
-# # b=80000
-# # Y_pred=m*X+b
-# # print(Y_pred)
-# # L=0.0001    #learning rate
-# # epochs=40000
-
-
-# # n=len(X)
-# # for i in range(epochs):
-# #    Y_pred=m*X+b
-# #    D_m=(-2/n)*sum(X*(Y-Y_pred))
-# #    D_b=(-2/n)*sum(Y-Y_pred)
-# #    m=m-L*D_m
-# #    b=b-L*D_b
-
-
-# # print(m)
-# # print(b)
-
-
-# # mae=mean_absolute_error(Y,Y_pred)
-# # mse=mean_squared_error(Y,Y_pred)
-# # print("================")
-# # print(mae)
-# # print(mse)
-# # r2=r2_score(Y,Y_pred)
-# # print(r2)
-
-
-
-
-
-# # Verilənlər (X = sahə, Y = qiymət)
-# area = np.array([50, 55, 60, 65, 70, 80, 90, 100, 120])
-# price = np.array([150000, 165000, 180000, 195000, 210000, 220000, 230000, 240000, 280000])
-
-# # Başlanğıc dəyərlər (təsadüfi seçilmiş əmsallar)
-# m = 1300     # xəttin meyli (slope)
-# b = 80000    # y-kəsişmə nöqtəsi (intercept)
-
-# # Proqnoz (Y_pred = təxmin edilən qiymətlər)
-# Y_pred = m * area + b
-# print(Y_pred)   # ilkin proqnozlar
-
-# # Hyperparametrlər
-# L = 0.0001      # learning rate (öyrənmə sürəti)
-# epochs = 40000  # təkrarlama sayı
-# n = len(area)   # nümunələrin sayı
-
-# # Gradient descent dövrü
+# n=len(X)
 # for i in range(epochs):
-#     # Mövcud modelə görə proqnoz
-#     Y_pred = m * area + b
+#    Y_pred=m*X+b
+#    D_m=(-2/n)*sum(X*(Y-Y_pred))
+#    D_b=(-2/n)*sum(Y-Y_pred)
+#    m=m-L*D_m
+#    b=b-L*D_b
 
-#     # Gradientlərin hesablanması
-#     # D_m və D_b - xəta funksiyasının törəmələri (slope və intercept üçün)
-#     D_m = (-2/n) * sum(area * (price - Y_pred))  # m üzrə dəyişmə
-#     D_b = (-2/n) * sum(price - Y_pred)           # b üzrə dəyişmə
 
-#     # Əmsalların yenilənməsi
-#     m = m - L * D_m
-#     b = b - L * D_b
+# print(m)
+# print(b)
 
-# # Nəticə əmsallar (m və b)
-# print("Öyrənilmiş m:", m)
-# print("Öyrənilmiş b:", b)
 
-# # Modelin keyfiyyət göstəriciləri
-# mae = mean_absolute_error(price, Y_pred)  # orta mütləq xəta
-# mse = mean_squared_error(price, Y_pred)   # orta kvadrat xəta
-# r2 = r2_score(price, Y_pred)              # R^2 skor (modelin uyğunluğu)
-
+# mae=mean_absolute_error(Y,Y_pred)
+# mse=mean_squared_error(Y,Y_pred)
 # print("================")
-# print("MAE:", mae)
-# print("MSE:", mse)
-# print("R2 Score:", r2)
+# print(mae)
+# print(mse)
+# r2=r2_score(Y,Y_pred)
+# print(r2)
+
+
+
+
+
+# Verilənlər (X = sahə, Y = qiymət)
+area = np.array([50, 55, 60, 65, 70, 80, 90, 100, 120])
+price = np.array([150000, 165000, 180000, 195000, 210000, 220000, 230000, 240000, 280000])
+
+# Başlanğıc dəyərlər (təsadüfi seçilmiş əmsallar)
+m = 1300     # xəttin meyli (slope)
+b = 80000    # y-kəsişmə nöqtəsi (intercept)
+
+# Proqnoz (Y_pred = təxmin edilən qiymətlər)
+Y_pred = m * area + b
+print(Y_pred)   # ilkin proqnozlar
+
+# Hyperparametrlər
+L = 0.0001      # learning rate (öyrənmə sürəti)
+epochs = 40000  # təkrarlama sayı
+n = len(area)   # nümunələrin sayı
+
+# Gradient descent dövrü
+for i in range(epochs):
+    # Mövcud modelə görə proqnoz
+    Y_pred = m * area + b
+
+    # Gradientlərin hesablanması
+    # D_m və D_b - xəta funksiyasının törəmələri (slope və intercept üçün)
+    D_m = (-2/n) * sum(area * (price - Y_pred))  # m üzrə dəyişmə
+    D_b = (-2/n) * sum(price - Y_pred)           # b üzrə dəyişmə
+
+    # Əmsalların yenilənməsi
+    m = m - L * D_m
+    b = b - L * D_b
+
+# Nəticə əmsallar (m və b)
+print("Öyrənilmiş m:", m)
+print("Öyrənilmiş b:", b)
+
+# Modelin keyfiyyət göstəriciləri
+mae = mean_absolute_error(price, Y_pred)  # orta mütləq xəta
+mse = mean_squared_error(price, Y_pred)   # orta kvadrat xəta
+r2 = r2_score(price, Y_pred)              # R^2 skor (modelin uyğunluğu)
+
+print("================")
+print("MAE:", mae)
+print("MSE:", mse)
+print("R2 Score:", r2)
 
 
 
@@ -1081,361 +1080,3 @@ import pandas as pd
 # Amma öyrənmə və machine learning üçün — Gradient Descent daha vacibdir və daha güclü üsuldur.
 
 #endregion
-
-#region PythonAi8
-
-# import numpy as np
-# import pandas as pd
-# from sklearn.impute import SimpleImputer
-# from sklearn.preprocessing import StandardScaler,OneHotEncoder
-
-
-#region Uzun versiya 
-# # ------------------------------
-# # 1) MISSING VALUES (NaN) İMPUTATION
-# # ------------------------------
-
-# # DataFrame yaradırıq (bəzilərində NaN boş dəyərlər var)
-# data = {
-#     'Rooms': [2, 3, np.nan, 4, 3],
-#     'Area_m2': [60, 80, 100, np.nan, 120],
-#     'Price_AZN': [90000, 120000, 150000, 200000, np.nan]
-# }
-
-# # Əsas DataFrame
-# df = pd.DataFrame(data)
-
-# # NaN dəyərlər median ilə doldurulacaq
-# # strategy='median' → boş yerləri median ilə əvəz edir
-# imputer = SimpleImputer(strategy='median')
-
-# print("---- Əvvəlki DataFrame ----")
-# print(df)
-
-# # fit_transform() → həm öyrənir, həm doldurur
-# df_imputed = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
-
-# print("\n---- NaN-lar doldurulmuş DataFrame ----")
-# print(df_imputed)
-
-
-
-# # ------------------------------
-# # 2) ONE-HOT ENCODING (Kategoriya -> Sayı formatı)
-# # ------------------------------
-
-# # Rayon adları (kategoriya məlumatı)
-# df = pd.DataFrame({
-#     'District': ['Yasamal', 'Nizami', 'Sebayil', 'Yasamal', 'Sebayil']
-# })
-
-# # OneHotEncoder → hər rayon üçün ayrıca sütun yaradır (0 və 1)
-# encoder = OneHotEncoder(sparse_output=False)
-
-# # fit_transform() → həm öyrənir, həm çevrilir
-# encoded = encoder.fit_transform(df[['District']])
-
-# # Yeni sütun adlarını alırıq
-# encoded_df = pd.DataFrame(encoded, columns=encoder.get_feature_names_out(['District']))
-
-# print("\n---- One-Hot Encoding nəticəsi ----")
-# print(encoded_df)
-
-
-# from sklearn.preprocessing import StandardScaler
-
-# X=pd.DataFrame({
-#     'Area_m2':[50,70,100,150,200],
-#     'Rooms':[1,2,3,4,5]
-# })
-
-# scaler = StandardScaler()
-# scaled=scaler.fit_transform(X)
-# scaled_df = pd.DataFrame(scaled,columns=X.columns)
-# print(scaled_df)
-
-
-
-#scaling prfonrmansin artmasi ve hesablamanin balansi olmasi ucundue?
-
-
-# Scaling modelin rəqəmləri daha yaxşı başa düşməsi, daha tez öyrənməsi və daha düzgün nəticə verməsi üçündür.
-
-
-
-
-# 🔵 Multiple Linear Regression nədir?
-
-# Bu, birdən çox dəyişən istifadə edərək bir nəticəni proqnoz edən modeldir.
-
-# y^​=b+a1​x1​+a2​x2​+...+an​xn​
-
-
-# 🔵 Multiple Linear Regression ML-in hansı hissəsinə daxildir?
-# ✔ Machine Learning → Supervised Learning → Regression
-
-# Bu ardıcıllıqla gedir:
-
-# Machine Learning (Ümumi sahə)
-
-# Supervised Learning (Nəzarət olunan öyrənmə — modelə həm input, həm də cavab verilir)
-
-# Regression (Nəticə rəqəm olanda)
-
-# Linear Regression
-
-# Multiple Linear Regression
-
-# Yəni struktur belədir:
-
-# Machine Learning
-#  └── Supervised Learning
-#       └── Regression
-#            └── Linear Regression
-#                 └── Multiple Linear Regression
-
-# 🔵 Niyə ML sayılır?
-
-# Çünki:
-
-# Model məlumatdan öyrənir
-
-# Öyrənilən əmsallarla (a₁, a₂, a₃...) proqnoz edir
-
-# Xəta azaldılır, model optimallaşdırılır
-
-# Yeni məlumat verəndə cavab tapır
-
-# Bu klassik ML davranışıdır.
-
-
-# import random
-
-# np.random.seed(42)
-# districts = ["Yasamal", "Nizami", "Sabayil", "Khatai", "Binagadi", "Narimanov"]
-# building_types = ["New", "Old", "Premium", "Economy"]
-
-# data = {
-#     "Rooms": np.random.randint(1, 6, 100),
-#     "Area_m2": np.random.randint(40, 250, 100),
-#     "District": [random.choice(districts) for _ in range(100)],
-#     "BuildingType": [random.choice(building_types) for _ in range(100)],
-#     "Floor": np.random.choice([1, 2, 3, 4, 5, np.nan], 100, p=[0.15,0.15,0.2,0.2,0.2,0.1]),
-#     "YearBuilt": np.random.choice([2000, 2005, 2010, 2015, 2020, np.nan], 100, p=[0.15,0.15,0.2,0.2,0.2,0.1]),
-# }
-
-# price = (
-#     data["Area_m2"] * 1000
-#     + data["Rooms"] * 8000
-#     + np.random.randint(-30000, 30000, 100)
-# )
-# data["Price_AZN"] = price
-
-# df = pd.DataFrame(data)
-# df.to_excel("houses_extended.xlsx", index=False)
-
-
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler,OneHotEncoder
-from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
-from sklearn.impute import SimpleImputer
-
-
-
-df=pd.read_excel("houses_extended.xlsx")
-#print(df.head())
-#print(df.info())
-
-
-
-# X → modelin istifadə edəcəyi input məlumatlar (Price_AZN sütunu çıxılıb)
-X = df.drop("Price_AZN", axis=1)
-
-# y → modelin proqnoz etməli olduğu nəticə (Price_AZN)
-y = df["Price_AZN"]
-
-# Rəqəmli (numeric) sütunların siyahısı
-num_cols = ["Rooms", "Area_m2", "Floor", "YearBuilt"]
-
-# Kategorik (categorical) sütunların siyahısı
-cat_cols = ["District", "BuildingType"]
-
-# ==========================================
-# Rəqəmli məlumatlar üçün pipeline
-# 1) NaN-ları median ilə doldurur
-# 2) Rəqəmləri StandardScaler ilə standartlaşdırır
-numeric_transformer = Pipeline(steps=[
-   ('imputer', SimpleImputer(strategy='median')),
-   ('scaler', StandardScaler())
-])
-
-# ==========================================
-# Kategorik məlumatlar üçün pipeline
-# 1) NaN-ları ən çox təkrarlanan dəyərlə doldurur
-# 2) One-hot encoding ilə hər kateqoriyanı sütuna çevirir
-#    handle_unknown='ignore' → train-də olmayan dəyərlər gəlsə xətaya düşməsin
-categorical_transformer = Pipeline(steps=[
-   ('imputer', SimpleImputer(strategy='most_frequent')),
-   ('encoder', OneHotEncoder(handle_unknown='ignore'))
-])
-
-# ==========================================
-# ColumnTransformer ilə bütün məlumatları birləşdiririk
-# - Rəqəmli sütunlara numeric_transformer tətbiq olunur
-# - Kategorik sütunlara categorical_transformer tətbiq olunur
-preprocessor = ColumnTransformer(
-   transformers=[
-       ('num', numeric_transformer, num_cols),
-       ('cat', categorical_transformer, cat_cols),
-   ]
-)
-
-# ==========================================
-# 1️⃣ Pipeline ilə model yaratmaq
-# 'preprocessor' → ColumnTransformer-i tətbiq edir (numeric + categorical preprocessing)
-# 'regressor'   → Linear Regression modelini əlavə edir
-model = Pipeline(steps=[
-   ('preprocessor', preprocessor),
-   ('regressor', LinearRegression())
-])
-
-# ==========================================
-# 2️⃣ Train və test set-lərə bölmək
-# X_train, y_train → modelin öyrənəcəyi məlumatlar (training data)
-# X_test, y_test   → modelin performansını yoxlayacağı məlumatlar (test data)
-# test_size=0.2    → verilənlərin 20%-i test üçün, 80%-i train üçün ayrılır
-# random_state=42  → nəticələrin təkrar eyni olması üçün seed təyin olunur
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
-model.fit(X_train, y_train)
-
-
-pred=model.predict(X_test)  #random secilmis 20 % gore hesablanir.
-
-
-mae=mean_absolute_error(y_test,pred)
-mse=mean_squared_error(y_test,pred)
-r2=r2_score(y_test,pred)
-print(mae)
-print(mse)
-print(r2)
-
-
-
-# encoder = model.named_steps["preprocessor"].named_transformers_["cat"].named_steps["encoder"]
-# encoded_feature_names = encoder.get_feature_names_out(cat_cols)
-#
-# feature_names = num_cols + list(encoded_feature_names)
-#
-# coef = model.named_steps["regressor"].coef_
-# importance = pd.Series(coef, index=feature_names).sort_values(ascending=False)
-#
-# print("\nƏn çox təsir edən sütunlar:\n")
-# print(importance.head(10))
-#endregion
-
-
-
-#region Qisa versiya
-
-# 1️⃣ Dataset və target
-
-# Input features (X) → Rooms, Area_m2, Floor, YearBuilt, District, BuildingType
-
-# Target (y) → Price_AZN (proqnoz etmək istədiyimiz qiymət)
-
-# 2️⃣ Feature növləri
-
-# Numeric (rəqəmli) → Rooms, Area_m2, Floor, YearBuilt
-
-# Categorical (kateqorik) → District, BuildingType
-
-# 3️⃣ Data preprocessing (ön emal)
-
-# Numeric pipeline:
-
-# SimpleImputer(strategy='median') → NaN-ları median ilə doldurur
-
-# StandardScaler() → bütün rəqəmləri standartlaşdırır (mean=0, std=1)
-
-# Categorical pipeline:
-
-# SimpleImputer(strategy='most_frequent') → NaN-ları ən çox təkrarlanan dəyərlə doldurur
-
-# OneHotEncoder(handle_unknown='ignore') → hər kateqoriyanı 0/1 sütunlarına çevirir
-
-# Bütün sütunları birləşdirir: ColumnTransformer
-
-# 4️⃣ Model
-
-# Linear Regression → bir neçə input feature-dan price-i proqnoz edir
-
-# Pipeline-da həm preprocessing, həm model bir yerdədir
-
-# 5️⃣ Train/Test split
-
-# train_test_split(test_size=0.2) → 80% train, 20% test
-
-# Random state 42 → nəticə təkrar olunur
-
-# 6️⃣ Model öyrədilməsi
-# model.fit(X_train, y_train)
-
-
-# Pipeline avtomatik olaraq:
-
-# Numeric və categorical preprocessing edir
-
-# Linear Regression-i öyrədir
-
-# 7️⃣ Performance ölçüləri
-
-# MAE → orta abs(xəta)
-
-# MSE → orta kvadrat xətası
-
-# R² → modelin izahat gücü (1.0 yaxşı, 0.0 pis)
-
-# mae=mean_absolute_error(y_test,pred)
-# mse=mean_squared_error(y_test,pred)
-# r2=r2_score(y_test,pred)
-
-# 8️⃣ Yeni məlumatdan proqnoz
-
-# İstifadəçi input verir: Rooms, Area_m2, District, BuildingType, Floor, YearBuilt
-
-# Yeni DataFrame yaradılır → model.predict(new_df) ilə price təxmin olunur
-
-# 9️⃣ Nəticə
-
-# Pipeline + Linear Regression → tam ML workflow
-
-# Kod bütün preprocessing-i avtomatik edir → NaN-ları doldurur, scale edir, one-hot encoding tətbiq edir
-
-# Model təlim olunub → yeni input üçün qiymət təxmin edir
-
-
-# StandartScaler rəqəmli sütunları 0 ortalama, 1 standart sapma ilə normalizə edir ki, model tez, stabil və balanslı öyrənsin.
-
-
-
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
-
-
-#endregion
-
-
-
-
-#endregion 

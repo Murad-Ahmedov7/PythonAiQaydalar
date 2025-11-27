@@ -1425,12 +1425,11 @@ print(r2)
 
 
 
-# | Funksiya          | Nə edir                                   |
-# | ----------------- | ----------------------------------------- |
-# | `fit()`           | Parametrləri öyrənir                      |
-# | `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
-# | `fit_transform()` | Həm öyrənir, həm çevirir                  |
-
+| Funksiya          | Nə edir                                   |
+| ----------------- | ----------------------------------------- |
+| `fit()`           | Parametrləri öyrənir                      |
+| `transform()`     | Məlumatı öyrənilmiş parametrlərlə çevirir |
+| `fit_transform()` | Həm öyrənir, həm çevirir                  |
 
 
 #endregion
