@@ -1753,57 +1753,56 @@ from sklearn.model_selection import train_test_split
 # GB EGB
 
 
-# 🌲 1) Random Forest — paralel ağaclar
+🌲 1) Random Forest — paralel ağaclar
 
-# Nədir?
-# Birdən çox decision tree eyni anda (paralel) qurulur və nəticələri birləşdirilir.
+Nədir?
+Birdən çox decision tree eyni anda (paralel) qurulur və nəticələri birləşdirilir.
 
-# Niyə belə edir?
-# Çünki çox ağac birlikdə daha stabil nəticə verir.
+Niyə belə edir?
+Çünki çox ağac birlikdə daha stabil nəticə verir.
 
-# Necə işləyir?
+Necə işləyir?
 
-# Hər ağac dataset-in bir hissəsini görür
+Hər ağac dataset-in bir hissəsini görür
 
-# Hər ağac təsadüfi feature-lər seçir
+Hər ağac təsadüfi feature-lər seçir
 
-# Sonda bütün ağacların nəticələri birləşdirilir (səsvermə / orta)
+Sonda bütün ağacların nəticələri birləşdirilir (səsvermə / orta)
 
-# 👉 Ağaclar bir-birinin səhvini düzəltmir.
-# Hamısı eyni anda işləyir (paralel).
+👉 Ağaclar bir-birinin səhvini düzəltmir.
+Hamısı eyni anda işləyir (paralel).
 
-# 🔥 2) Gradient Boosting — ardıcıl ağaclar
+🔥 2) Gradient Boosting — ardıcıl ağaclar
 
-# Nədir?
-# Decision tree-lər ardıcıl (sequence) qurulur və sonrakı ağac əvvəlki ağacın səhvlərini düzəltməyə çalışır.
+Nədir?
+Decision tree-lər ardıcıl (sequence) qurulur və sonrakı ağac əvvəlki ağacın səhvlərini düzəltməyə çalışır.
 
-# Necə işləyir?
+Necə işləyir?
 
-# İlk ağac sadə proqnoz edir → səhv edir
+İlk ağac sadə proqnoz edir → səhv edir
 
-# İkinci ağac həmin səhvləri öyrənir və düzəltməyə çalışır
+İkinci ağac həmin səhvləri öyrənir və düzəltməyə çalışır
 
-# Üçüncü ağac əvvəlkilərin qalan səhvlərini düzəldir
+Üçüncü ağac əvvəlkilərin qalan səhvlərini düzəldir
 
-# Belə-belə hər yeni ağac daha dəqiq olur
+Belə-belə hər yeni ağac daha dəqiq olur
 
-# 🔍 Yəni:
-# təkmilləşdirilən ardıcıl ağaclar → daha dəqiq model
+🔍 Yəni:
+təkmilləşdirilən ardıcıl ağaclar → daha dəqiq model
 
-# ⚡ 3) XGBoost (Extreme Gradient Boosting)
+⚡ 3) XGBoost (Extreme Gradient Boosting)
 
-# Gradient Boosting-in daha güclü, daha sürətli və daha az overfitting edən versiyasıdır.
+Gradient Boosting-in daha güclü, daha sürətli və daha az overfitting edən versiyasıdır.
 
-# Üstünlükləri:
+Üstünlükləri:
 
-# regularization var
+regularization var
 
-# daha sürətli optimizasiya
+daha sürətli optimizasiya
 
-# RAM istifadə çox effektli
+RAM istifadə çox effektli
 
-# ən çox Kaggle yarışmalarının qalibi → XGBoost
-
+ən çox Kaggle yarışmalarının qalibi → XGBoost
 
 
 

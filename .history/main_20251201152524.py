@@ -1753,61 +1753,276 @@ from sklearn.model_selection import train_test_split
 # GB EGB
 
 
-# 🌲 1) Random Forest — paralel ağaclar
+# 🌟 Gradient Boosting (GB)
 
-# Nədir?
-# Birdən çox decision tree eyni anda (paralel) qurulur və nəticələri birləşdirilir.
+# Tərif:
 
-# Niyə belə edir?
-# Çünki çox ağac birlikdə daha stabil nəticə verir.
+# Bir neçə decision tree-ni ardıcıl öyrədərək səhvləri düzəldən modeldir.
 
-# Necə işləyir?
+# Random Forest kimi “çoxlu ağac” istifadə edir, amma fərqi budur:
+# Random Forest = paralel
+# Gradient Boosting = ardıcıl (sequential)
 
-# Hər ağac dataset-in bir hissəsini görür
+# Xüsusiyyətləri:
 
-# Hər ağac təsadüfi feature-lər seçir
+# Hər ağac əvvəlkinin səhvlərini öyrənir
 
-# Sonda bütün ağacların nəticələri birləşdirilir (səsvermə / orta)
+# Daha dəqiq və optimallaşdırılmış model verir
 
-# 👉 Ağaclar bir-birinin səhvini düzəltmir.
-# Hamısı eyni anda işləyir (paralel).
+# Overfitting ehtimalı var, amma tənzimlənə bilər (learning_rate, max_depth)
 
-# 🔥 2) Gradient Boosting — ardıcıl ağaclar
+# ⚡ Extreme Gradient Boosting (XGB / EGB)
 
-# Nədir?
-# Decision tree-lər ardıcıl (sequence) qurulur və sonrakı ağac əvvəlki ağacın səhvlərini düzəltməyə çalışır.
+# Tərif:
 
-# Necə işləyir?
+# GB-nin təkamül etmiş versiyası
 
-# İlk ağac sadə proqnoz edir → səhv edir
+# Daha sürətli və effektiv
 
-# İkinci ağac həmin səhvləri öyrənir və düzəltməyə çalışır
+# Regularization əlavə olunub → overfitting azalır
 
-# Üçüncü ağac əvvəlkilərin qalan səhvlərini düzəldir
+# Large dataset-lərdə və Kaggle yarışmalarında çox istifadə olunur
 
-# Belə-belə hər yeni ağac daha dəqiq olur
+# 🔹 Qısaca fərq
+# Model	Ağacların quruluşu	Sıralama	Sürət	Stabilik
+# Random Forest	Paralel	Bütün ağaclar eyni anda	Fast	Stabil
+# GB	Ardıcıllıq	Bir ağac əvvəlkinin səhvini öyrənir	Yavaş	Daha dəqiq, amma riskli
+# XGB	Ardıcıllıq + optimizasiya	Daha sürətli, regularization	Fast	Daha stabildir
 
-# 🔍 Yəni:
-# təkmilləşdirilən ardıcıl ağaclar → daha dəqiq model
 
-# ⚡ 3) XGBoost (Extreme Gradient Boosting)
 
-# Gradient Boosting-in daha güclü, daha sürətli və daha az overfitting edən versiyasıdır.
-
-# Üstünlükləri:
-
-# regularization var
-
-# daha sürətli optimizasiya
-
-# RAM istifadə çox effektli
-
-# ən çox Kaggle yarışmalarının qalibi → XGBoost
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
+from sklearn.model_selection import train_test_split
 
 
 
 
+# df=pd.read_excel("houses_extended.xlsx")
+# df['HasParking']=df['HasParking'].map({'Yes':1,'No':0})
+# X=df[['Area_m2','Rooms','Floor']]
+# y=df['Price_AZN']
+#
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#
+# model=DecisionTreeRegressor(
+#     criterion='squared_error',# gini , entropy , poisson
+#     min_samples_split=4,
+#     max_depth=5,
+#     random_state=42
+# )
+#
+# model.fit(X_train,y_train)
+# y_pred=model.predict(X_test)
+# mse=mean_squared_error(y_test,y_pred)
+# mae=mean_absolute_error(y_test,y_pred)
+# r2=r2_score(y_test,y_pred)
+# print("DECISION TREE MSE : ",mse)
+# print("DECISION TREE MAE : ",mae)
+# print("DECISION TREE R Score : ",r2)
 
+
+
+
+# import matplotlib.pyplot as plt
+# importance=(pd.Series(model.feature_importances_,index=X.columns))
+# importance.sort_values(ascending=False).plot(kind='barh',color='teal')
+# plt.title('Feature Importance')
+# plt.show()
+
+
+
+
+# rf=RandomForestRegressor(
+#     n_estimators=400,
+#     max_depth=4,
+#     min_samples_split=4,
+#     n_jobs=-1,
+#     random_state=42
+# )
+#
+# rf.fit(X_train,y_train)
+# y_pred_rf=rf.predict(X_test)
+# mse_rf=mean_squared_error(y_test,y_pred_rf)
+# mae_rf=mean_absolute_error(y_test,y_pred_rf)
+# r2_rf=r2_score(y_test,y_pred_rf)
+# print("Random Forest TREE MSE : ",mse_rf)
+# print("Random Forest TREE MAE : ",mae_rf)
+# print("Random Forest TREE R Score : ",r2_rf)
+
+
+
+
+
+
+
+
+df=pd.read_excel("car_sales_1000.xlsx")
+df["EngineSize_L"].fillna(df["EngineSize_L"].median(),inplace=True)
+df["Mileage_km"].fillna(df["Mileage_km"].median(),inplace=True)
+df["ModelYear"].fillna(df["ModelYear"].mode()[0],inplace=True)
+df["FuelType"].fillna(df["FuelType"].mode()[0],inplace=True)
+
+
+
+
+q_high=df["Price_AZN"].quantile(0.99)
+df=df[df["Price_AZN"]< q_high]
+
+
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
+
+#
+# X=df[["Brand","ModelYear","EngineSize_L","Mileage_km","FuelType","Transmission"]]
+# y=df["Price_AZN"]
+#
+#
+# cat_cols=["Brand","FuelType","Transmission"]
+# num_cols=["ModelYear","EngineSize_L","Mileage_km"]
+#
+#
+# preprocessor=ColumnTransformer([
+#    ("cat",OneHotEncoder(handle_unknown="ignore"),cat_cols),
+# ],remainder="passthrough")
+#
+#
+# X_processed = preprocessor.fit_transform(X)
+#
+#
+# X_train, X_test, y_train, y_test = train_test_split(X_processed, y, test_size=0.2, random_state=42)
+#
+#
+# tree = DecisionTreeRegressor(max_depth=5,min_samples_split=4,random_state=42)
+# tree.fit(X_train,y_train)
+# y_pred = tree.predict(X_test)
+#
+#
+# mae = mean_absolute_error(y_test,y_pred)
+# r2 = r2_score(y_test,y_pred)
+# mse=mean_squared_error(y_test,y_pred)
+# print(mae)
+# print(mse)
+# print(r2)
+#
+#
+# rf=RandomForestRegressor(n_estimators=200,max_depth=8,min_samples_split=4,n_jobs=-1,random_state=42)
+# rf.fit(X_train,y_train)
+# y_pred_rf= rf.predict(X_test)
+# mae = mean_absolute_error(y_test,y_pred_rf)
+# r2 = r2_score(y_test,y_pred_rf)
+# mse=mean_squared_error(y_test,y_pred_rf)
+# print(mae)
+# print(mse)
+# print(r2)
+
+
+
+
+
+
+X=df[["Brand","ModelYear","EngineSize_L","Mileage_km","FuelType","Transmission"]]
+y=df["Price_AZN"]
+
+
+
+
+cat_cols=["Brand","FuelType","Transmission"]
+num_cols=["ModelYear","EngineSize_L","Mileage_km"]
+
+
+
+
+preprocessor=ColumnTransformer([
+  ("cat",OneHotEncoder(handle_unknown="ignore"),cat_cols),
+],remainder="passthrough")
+
+
+
+
+X_processed = preprocessor.fit_transform(X)
+
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X_processed, y, test_size=0.2, random_state=42)
+
+
+gb=GradientBoostingRegressor(
+   n_estimators=400,
+   learning_rate=0.04,
+   random_state=42,
+   max_depth=2,
+)
+
+
+gb.fit(X_train, y_train)
+y_pred_gb = gb.predict(X_test)
+
+
+mae_gb = mean_absolute_error(y_test, y_pred_gb)
+r2_gb = r2_score(y_test, y_pred_gb)
+print(mae_gb)
+print(r2_gb)
+
+
+from xgboost import XGBRegressor
+
+
+xgb=XGBRegressor(
+   n_estimators=400,
+   learning_rate=0.03,
+   max_depth=2,
+   subsample=0.4,
+   colsample_bytree=0.8,
+   reg_lambda=0.5
+)
+
+
+# | Parametr         | Tərif                     | Sənin dəyərin |
+# | ---------------- | ------------------------- | ------------- |
+# | n_estimators     | Ağacların sayı            | 400           |
+# | learning_rate    | Hər ağacın töhfəsi        | 0.03          |
+# | max_depth        | Ağacın maksimum dərinliyi | 2             |
+# | subsample        | Sample faizi              | 0.4           |
+# | colsample_bytree | Feature faizi             | 0.8           |
+# | reg_lambda       | L2 regularization gücü    | 0.5           |
+
+# | Parametr         | Təsviri                                            | Misal                                          |
+# | ---------------- | -------------------------------------------------- | ---------------------------------------------- |
+# | subsample        | Hər ağacın öyrənəcəyi data faizi                   | 0.4 → 1000 sample-dən 400 istifadə             |
+# | colsample_bytree | Hər ağacın istifadə edəcəyi feature faizi          | 0.8 → 10 feature-dən 8 istifadə                |
+# | reg_lambda       | L2 regularization gücü (overfitting azaltmaq üçün) | 0.5 → model çox sərt deyil, yumuşaq ağırlıqlar |
+
+xgb.fit(X_train, y_train)
+y_pred_xgb = xgb.predict(X_test)
+mae_xgb = mean_absolute_error(y_test, y_pred_xgb)
+r2_xgb = r2_score(y_test, y_pred_xgb)
+print(mae_xgb)
+print(r2_xgb)
+
+
+# new_car=pd.DataFrame({
+#    "Brand":["Mercedes"],
+#    "ModelYear":[2020],
+#    "EngineSize_L":[4.3],
+#    "Mileage_km":[193683],
+#    "FuelType":["Diesel"],
+#    "Transmission":["Automatic"],
+# })
+#
+#
+# new_car_proc=preprocessor.transform(new_car)
+#
+#
+# pred_price=gb.predict(new_car_proc)
+# print("Price : ",pred_price)
 
 
 

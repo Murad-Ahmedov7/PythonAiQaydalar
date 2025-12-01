@@ -979,15 +979,48 @@ import pandas as pd
 # # Dispersiya bir dəyişənin orta dəyərdən nə qədər uzaqlaşdığını ölçür.
 # # Sadə desək, bir sıra dəyərlərin nə qədər “yayılmış” olduğunu göstərir.
 
+🔹 Dispersiya (Variance) nədir?
 
-# 🔹 Dispersiya (Variance) nədir?
-# Dəyərlərin orta qiymətdən neçə vahid² uzaqlaşdığını ölçən göstəricidir.
-# Yəni orta kvadratik kənarlaşmadır.
+Dəyərlərin orta qiymətdən neçə vahid² uzaqlaşdığını ölçən göstəricidir.
+Yəni orta kvadratik kənarlaşmadır.
+
+Formula:
+
+𝑣
+𝑎
+𝑟
+𝑖
+𝑎
+𝑛
+𝑐
+𝑒
+=
+𝑎
+𝑣
+𝑔
+(
+(
+𝑥
+−
+𝑚
+𝑒
+𝑎
+𝑛
+)
+2
+)
+variance=avg((x−mean)
+2
+)
+🔹 Std (Standard Deviation) nədir?
+
+Dispersiyanın kvadrat kökü deməkdir.
+
+std=
+variance
+	​
 
 
-# Std (Standard Deviation) nədir?
-
-# Dispersiyanın kvadrat kökü deməkdir.
 
 
 # #Gradient Descent
@@ -1446,371 +1479,3 @@ print(r2)
 
 
 #endregion 
-
-
-
-#region PythonAi9
-# 1)B+
-# 2)B+
-# 3)C+
-# 4)B+
-# 5)A+
-# 6)A+
-# 7)B+
-# 8)B+
-# 9)B+
-# 10)A+
-# 11)D- CAVAB B-DIR.
-# 12)B+
-# 13)A+
-# 14)A+
-# 15)B+
-# 16)A+
-# 17)A+
-# 18)A+
-# 19)C+
-# 20)A+
-
-
-# Lesson 9 cavablari ve imtahan ucun bir daha bax.Ve hemcinin aciq suallara da bax.
-
-#endregion
-
-
-
-#region PythonAi10
-
-#  Polynominal and L1 L2 
-
-
-
-# Overfitting — Machine Learning modelinin təlim (training) məlumatını həddindən artıq əzbərləməsi deməkdir.
-#  Model verilənləri real nümunə kimi yox, sanki yaddaş kimi saxlayır
-
-# Nəticədə:
-
-# Training-də çox yaxşı nəticə verir
-
-# Test (real) məlumatlarda isə pis işləyir
-
-# Yəni model ümumiləşdirə bilmir, sadəcə yadda saxlayır.
-
-
-
-# Underfitting — modelin həm training, həm də test məlumatlarında pis nəticə verməsidir.
-
-# Yəni model çox sadədir, məlumatın içindəki əlaqələri öyrənə bilmir.
-
-
-
-
-
-# Burada sklearn 5 testdən 5 nəticə çıxarır.
-
-# scores = cross_val_score(...) → bu cross validation scores deməkdir.
-
-# Yəni:
-
-# ✔️ Cross-validation = modeli bir neçə dəfə (məs: 5 dəfə) fərqli hissələrdə test etmək
-
-
-
-
-
-# Polynomial Regression
-
-# Polynomial Regression — linear regression-in bir variantıdır, amma düz xətt əvəzinə əyri xətt çəkməyə imkan verən regresiya üsuludur.
-
-# y=a+bx+cx^2
-
-# y → Modelin proqnoz etdiyi nəticə (dependent variable).
-
-# a → Intercept (sabit termin). Yəni x=0 olarkən y-nin dəyəri.
-
-# b → x-in çəkisi (weight). Bu xətti termin üçün əhəmiyyətini göstərir.
-
-# c → x²-in çəkisi (weight). Bu kvadratik termin üçün əhəmiyyətini göstərir.
-
-# x → Müstəqil dəyişən (feature).
-
-
-
-#L1-Lasso
-#L2-Ridge
-
-#Regualization-
-
-# Lasso (L1): Az təsir göstərən (önəmsiz) feature-ləri tam sıfıra çevirir, yəni onları modeldən çıxarır.
-
-# Ridge (L2): Çox təsir göstərən (önəmli) feature-lərin çəkilərini azaldır, amma heç birini sıfıra çevirmir.
-
-
-
-#endregion
-
-
-
-#region PythonAi11
-
-#Decision Tree and Rf
-
-import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
-from sklearn.model_selection import train_test_split
-
-
-# https://medium.com/@shrutimisra/interpretable-ai-decision-trees-f9698e94ef9b (decision treenin sekli)
-
-
-
-# # Decision Tree Terminləri
-
-# # 1)Root Node (Kök Düyün)
-
-# # Ağacın başlanğıc nöqtəsi
-
-# # Bütün məlumatlar buradan bölünməyə başlayır
-
-# # Məsələn: “Rəngi qırmızıdır?” sualı root node ola bilər
-
-
-
-# # 2)Decision Node (Qərar Düyünü / Daxili Düyün)
-
-# # Kökdən sonra gələn və məlumatı bölən düyünlər
-
-# # Hər bir düyün müəyyən xüsusiyyətə görə qruplar yaradır
-
-# # Məsələn: “Yumşaqdır?” sualı decision node ola bilər
-
-# # Leaf Node (Yarpaqlar / Son Düyün)
-
-# # Ağacın nəticə verdiyi düyünlər
-
-
-
-
-# # 3) Leaf node-da artıq proqnoz və ya nəticə var, yeni qərar verilmir
-
-# # Məsələn: “Alma”, “Banan”, “Kivi” leaf node-dur
-
-
-
-# # 4)Subtree (Alt Ağac)
-
-# # Decision node-dan başlayan və leaf node ilə bitən ağacın kiçik hissəsi
-
-# # Hər decision node öz subtree-inə malikdir
-
-# # Başqa sözlə, subtree ağacın bir kiçik hissəsi, özü də kiçik bir ağacdır
-
-#yəni decison node+leaf node=subtree
-
-# # 5)Entropy (Entropiya)
-
-# # Dataset-dəki qarışıqlıq və qeyri-müəyyənlik səviyyəsini ölçən göstərici
-
-# # Dataset tam qarışıqdırsa → entropy yüksək
-
-# # Dataset tam təmizdirsə → entropy = 0
-
-
-   # Sadə dillə desək, qarışıqlıq dedikdə “datasetdəki nümunələrin müxtəlif siniflərə (labels) necə paylandığı” nəzərdə tutulur.
-
-   # Əgər bütün nümunələr eyni sinifdədirsə → qarışıqlıq yoxdur.
-
-   # Əgər nümunələr fərqli siniflər üzrə bərabər paylanıbsa → qarışıqlıq yüksəkdir.
-
-
-# # 6)Information Gain (Məlumat Qazancı / IG)
-
-
-# Information Gain = bir feature istifadə edərək məlumatdakı qeyri-müəyyənliyi nə qədər azalda bilərik.
-
-# # IG=Entropy(S)−Weighted Entropy of subgroup
-
-# # IG=0.881−0.583≈0.29
-
-
-# # ✅ Nəticə: Decision Tree tətbiqindən sonra qarışıqlıq azaldı
-
-# # Başlanğıc qarışıqlıq = 0.881
-
-# # Bölmədən sonra = 0.583
-
-# # Fərq = 0.298 → bu bölmə ilə məlumat daha “təmiz” oldu
-
-# # 4️⃣ Sadə desək
-
-# # Başlanğıc qarışıqlıq: dataset qarışıqdır, proqnoz qeyri-müəyyəndir
-
-# # Decision Tree tətbiq etdikdən sonra: məlumat xüsusiyyətlərə görə qruplara ayrılır, qarışıqlıq azalır, nəticələr daha dəqiq olur
-
-
-
-# # Decision Tree — verilənləri xüsusiyyətlərinə görə ardıcıl olaraq bölən və nəticədə qərar verən ağac strukturu olan bir məşhur nəzarətli öyrənmə (supervised learning) üsuludur.
-
-
-
-# #Random Forest Tree
-
-# # Random Forest — çoxlu Decision Tree-lərin (Qərar Ağacları) birləşməsidir.
-
-# # Tək ağac = Decision Tree
-
-# # Bir neçə ağacın birlikdə işləməsi = Random Forest
-
-
-# rf=RandomForestRegressor(
-#     n_estimators=400,
-#     max_depth=4,
-#     min_samples_split=4,
-#     n_jobs=-1,
-#     random_state=42
-# )
-
-# # 🌲 RandomForestRegressor Parametrlərinin TƏRİFLƏRİ
-# # 1️⃣ n_estimators
-
-# # Tərif:
-# # ➡ Random Forest-in içində qurulacaq decision tree-lərin sayı.
-
-# # Sənin dəyərin: 400
-# # Yəni model 400 ağac yaradacaq.
-
-# # 2️⃣ max_depth
-
-# # Tərif:
-# # ➡ Hər decision tree-nin icazə verilən maksimum dərinliyi (neçə səviyyə enə biləcəyi).
-
-# # Sənin dəyərin: 4
-# # Yəni hər ağac maksimum 4 səviyyə olacaq.
-
-# # 3️⃣ min_samples_split
-
-# # Tərif:
-# # ➡ Bir node-un iki yerə bölünməsi üçün minimum lazım olan sample sayı.
-
-# # Sənin dəyərin: 4
-# # Node içində 4-dən az sample varsa, bölünməyəcək.
-
-# # 4️⃣ n_jobs
-
-# # Tərif:
-# # ➡ Modelin train zamanı istifadə edəcəyi CPU nüvələrinin sayı.
-
-# # Sənin dəyərin: -1
-# # Bu deməkdir: bütün CPU nüvələrini istifadə et → maksimum sürət.
-
-# # 5️⃣ random_state
-
-# # Tərif:
-# # ➡ Bütün random prosesləri (data seçimi, feature seçimi, split-lər) sabitləşdirən toxum (seed).
-
-# # Sənin dəyərin: 42
-# # Yəni model hər dəfə eyni nəticəni verəcək.
-
-# # ✨ QISA XÜLASƏ
-# # Parametr	Tərif
-# # n_estimators	Ağacların sayı
-# # max_depth	Ağacın maksimum dərinliyi
-# # min_samples_split	Split üçün lazım olan minimum sample
-# # n_jobs	CPU sayı (paralelləşmə)
-# # random_state	Nəticəni sabit saxlamaq üçün random toxum
-
-
-
-# # ✔ NƏTİCƏ (super sadə)
-
-# # Random Forest = çox decision tree → səhvləri ortalaşdırır → daha güclü model yaradır.
-
-# # Bu səbəbdən istifadə edirik:
-
-# # ✓ daha stabil
-# # ✓ daha dəqiq
-# # ✓ daha az overfitting
-# # ✓ daha etibarlı
-# # ✓ daha güclü nəticə
-
-
-
-
-
-
-
-
-
-
-
-#endregion
-
-
-#region PythonAi12
-
-
-# GB EGB
-
-
-# 🌲 1) Random Forest — paralel ağaclar
-
-# Nədir?
-# Birdən çox decision tree eyni anda (paralel) qurulur və nəticələri birləşdirilir.
-
-# Niyə belə edir?
-# Çünki çox ağac birlikdə daha stabil nəticə verir.
-
-# Necə işləyir?
-
-# Hər ağac dataset-in bir hissəsini görür
-
-# Hər ağac təsadüfi feature-lər seçir
-
-# Sonda bütün ağacların nəticələri birləşdirilir (səsvermə / orta)
-
-# 👉 Ağaclar bir-birinin səhvini düzəltmir.
-# Hamısı eyni anda işləyir (paralel).
-
-# 🔥 2) Gradient Boosting — ardıcıl ağaclar
-
-# Nədir?
-# Decision tree-lər ardıcıl (sequence) qurulur və sonrakı ağac əvvəlki ağacın səhvlərini düzəltməyə çalışır.
-
-# Necə işləyir?
-
-# İlk ağac sadə proqnoz edir → səhv edir
-
-# İkinci ağac həmin səhvləri öyrənir və düzəltməyə çalışır
-
-# Üçüncü ağac əvvəlkilərin qalan səhvlərini düzəldir
-
-# Belə-belə hər yeni ağac daha dəqiq olur
-
-# 🔍 Yəni:
-# təkmilləşdirilən ardıcıl ağaclar → daha dəqiq model
-
-# ⚡ 3) XGBoost (Extreme Gradient Boosting)
-
-# Gradient Boosting-in daha güclü, daha sürətli və daha az overfitting edən versiyasıdır.
-
-# Üstünlükləri:
-
-# regularization var
-
-# daha sürətli optimizasiya
-
-# RAM istifadə çox effektli
-
-# ən çox Kaggle yarışmalarının qalibi → XGBoost
-
-
-
-
-
-
-
-
-
-
-#endregion

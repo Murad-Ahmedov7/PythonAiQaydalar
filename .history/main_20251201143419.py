@@ -1538,8 +1538,6 @@ print(r2)
 #L1-Lasso
 #L2-Ridge
 
-#Regualization-
-
 # Lasso (L1): Az təsir göstərən (önəmsiz) feature-ləri tam sıfıra çevirir, yəni onları modeldən çıxarır.
 
 # Ridge (L2): Çox təsir göstərən (önəmli) feature-lərin çəkilərini azaldır, amma heç birini sıfıra çevirmir.
@@ -1561,7 +1559,7 @@ from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
 from sklearn.model_selection import train_test_split
 
 
-# https://medium.com/@shrutimisra/interpretable-ai-decision-trees-f9698e94ef9b (decision treenin sekli)
+# https://medium.com/@shrutimisra/interpretable-ai-decision-trees-f9698e94ef9b()
 
 
 
@@ -1606,7 +1604,7 @@ from sklearn.model_selection import train_test_split
 
 # # Başqa sözlə, subtree ağacın bir kiçik hissəsi, özü də kiçik bir ağacdır
 
-#yəni decison node+leaf node=subtree
+
 
 # # 5)Entropy (Entropiya)
 
@@ -1617,17 +1615,8 @@ from sklearn.model_selection import train_test_split
 # # Dataset tam təmizdirsə → entropy = 0
 
 
-   # Sadə dillə desək, qarışıqlıq dedikdə “datasetdəki nümunələrin müxtəlif siniflərə (labels) necə paylandığı” nəzərdə tutulur.
-
-   # Əgər bütün nümunələr eyni sinifdədirsə → qarışıqlıq yoxdur.
-
-   # Əgər nümunələr fərqli siniflər üzrə bərabər paylanıbsa → qarışıqlıq yüksəkdir.
-
-
 # # 6)Information Gain (Məlumat Qazancı / IG)
 
-
-# Information Gain = bir feature istifadə edərək məlumatdakı qeyri-müəyyənliyi nə qədər azalda bilərik.
 
 # # IG=Entropy(S)−Weighted Entropy of subgroup
 
@@ -1734,75 +1723,6 @@ from sklearn.model_selection import train_test_split
 # # ✓ daha etibarlı
 # # ✓ daha güclü nəticə
 
-
-
-
-
-
-
-
-
-
-
-#endregion
-
-
-#region PythonAi12
-
-
-# GB EGB
-
-
-# 🌲 1) Random Forest — paralel ağaclar
-
-# Nədir?
-# Birdən çox decision tree eyni anda (paralel) qurulur və nəticələri birləşdirilir.
-
-# Niyə belə edir?
-# Çünki çox ağac birlikdə daha stabil nəticə verir.
-
-# Necə işləyir?
-
-# Hər ağac dataset-in bir hissəsini görür
-
-# Hər ağac təsadüfi feature-lər seçir
-
-# Sonda bütün ağacların nəticələri birləşdirilir (səsvermə / orta)
-
-# 👉 Ağaclar bir-birinin səhvini düzəltmir.
-# Hamısı eyni anda işləyir (paralel).
-
-# 🔥 2) Gradient Boosting — ardıcıl ağaclar
-
-# Nədir?
-# Decision tree-lər ardıcıl (sequence) qurulur və sonrakı ağac əvvəlki ağacın səhvlərini düzəltməyə çalışır.
-
-# Necə işləyir?
-
-# İlk ağac sadə proqnoz edir → səhv edir
-
-# İkinci ağac həmin səhvləri öyrənir və düzəltməyə çalışır
-
-# Üçüncü ağac əvvəlkilərin qalan səhvlərini düzəldir
-
-# Belə-belə hər yeni ağac daha dəqiq olur
-
-# 🔍 Yəni:
-# təkmilləşdirilən ardıcıl ağaclar → daha dəqiq model
-
-# ⚡ 3) XGBoost (Extreme Gradient Boosting)
-
-# Gradient Boosting-in daha güclü, daha sürətli və daha az overfitting edən versiyasıdır.
-
-# Üstünlükləri:
-
-# regularization var
-
-# daha sürətli optimizasiya
-
-# RAM istifadə çox effektli
-
-# ən çox Kaggle yarışmalarının qalibi → XGBoost
 
 
 

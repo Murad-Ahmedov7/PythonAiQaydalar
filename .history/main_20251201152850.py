@@ -1753,60 +1753,60 @@ from sklearn.model_selection import train_test_split
 # GB EGB
 
 
-# 🌲 1) Random Forest — paralel ağaclar
+# 🌟 Gradient Boosting (GB)
 
-# Nədir?
-# Birdən çox decision tree eyni anda (paralel) qurulur və nəticələri birləşdirilir.
+# Tərif:
 
-# Niyə belə edir?
-# Çünki çox ağac birlikdə daha stabil nəticə verir.
+# Bir neçə decision tree-ni ardıcıl öyrədərək səhvləri düzəldən modeldir.
 
-# Necə işləyir?
+# Random Forest kimi “çoxlu ağac” istifadə edir, amma fərqi budur:
+# Random Forest = paralel
+# Gradient Boosting = ardıcıl (sequential)
 
-# Hər ağac dataset-in bir hissəsini görür
+# Xüsusiyyətləri:
 
-# Hər ağac təsadüfi feature-lər seçir
+# Hər ağac əvvəlkinin səhvlərini öyrənir
 
-# Sonda bütün ağacların nəticələri birləşdirilir (səsvermə / orta)
+# Daha dəqiq və optimallaşdırılmış model verir
 
-# 👉 Ağaclar bir-birinin səhvini düzəltmir.
-# Hamısı eyni anda işləyir (paralel).
+# Overfitting ehtimalı var, amma tənzimlənə bilər (learning_rate, max_depth)
 
-# 🔥 2) Gradient Boosting — ardıcıl ağaclar
+# ⚡ Extreme Gradient Boosting (XGB / EGB)
 
-# Nədir?
-# Decision tree-lər ardıcıl (sequence) qurulur və sonrakı ağac əvvəlki ağacın səhvlərini düzəltməyə çalışır.
+# Tərif:
 
-# Necə işləyir?
+# GB-nin təkamül etmiş versiyası
 
-# İlk ağac sadə proqnoz edir → səhv edir
+# Daha sürətli və effektiv
 
-# İkinci ağac həmin səhvləri öyrənir və düzəltməyə çalışır
+# Regularization əlavə olunub → overfitting azalır
 
-# Üçüncü ağac əvvəlkilərin qalan səhvlərini düzəldir
+# Large dataset-lərdə və Kaggle yarışmalarında çox istifadə olunur
 
-# Belə-belə hər yeni ağac daha dəqiq olur
-
-# 🔍 Yəni:
-# təkmilləşdirilən ardıcıl ağaclar → daha dəqiq model
-
-# ⚡ 3) XGBoost (Extreme Gradient Boosting)
-
-# Gradient Boosting-in daha güclü, daha sürətli və daha az overfitting edən versiyasıdır.
-
-# Üstünlükləri:
-
-# regularization var
-
-# daha sürətli optimizasiya
-
-# RAM istifadə çox effektli
-
-# ən çox Kaggle yarışmalarının qalibi → XGBoost
+# 🔹 Qısaca fərq
+# Model	Ağacların quruluşu	Sıralama	Sürət	Stabilik
+# Random Forest	Paralel	Bütün ağaclar eyni anda	Fast	Stabil
+# GB	Ardıcıllıq	Bir ağac əvvəlkinin səhvini öyrənir	Yavaş	Daha dəqiq, amma riskli
+# XGB	Ardıcıllıq + optimizasiya	Daha sürətli, regularization	Fast	Daha stabildir
 
 
 
 
+
+# | Parametr         | Tərif                     | Sənin dəyərin |
+# | ---------------- | ------------------------- | ------------- |
+# | n_estimators     | Ağacların sayı            | 400           |
+# | learning_rate    | Hər ağacın töhfəsi        | 0.03          |
+# | max_depth        | Ağacın maksimum dərinliyi | 2             |
+# | subsample        | Sample faizi              | 0.4           |
+# | colsample_bytree | Feature faizi             | 0.8           |
+# | reg_lambda       | L2 regularization gücü    | 0.5           |
+
+# | Parametr         | Təsviri                                            | Misal                                          |
+# | ---------------- | -------------------------------------------------- | ---------------------------------------------- |
+# | subsample        | Hər ağacın öyrənəcəyi data faizi                   | 0.4 → 1000 sample-dən 400 istifadə             |
+# | colsample_bytree | Hər ağacın istifadə edəcəyi feature faizi          | 0.8 → 10 feature-dən 8 istifadə                |
+# | reg_lambda       | L2 regularization gücü (overfitting azaltmaq üçün) | 0.5 → model çox sərt deyil, yumuşaq ağırlıqlar |
 
 
 
