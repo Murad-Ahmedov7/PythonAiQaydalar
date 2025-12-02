@@ -2091,8 +2091,49 @@ c=torch.tensor([[1,2],[3,4]])
 
 # Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
 
+# Model, itki funksiyası və optimizator
+
+# model = HeartNet()
+# criterion = nn.BCELoss()  # Binary Cross Entropy loss
+# optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 
+# BCELoss → binary classification üçün
+
+# Adam → məşhur optimizator, gradient descent-i adaptiv edir
+
+# Təlim dövrü (Training loop)
+
+# epochs = 3000
+
+# for epoch in range(epochs):
+#     y_pred = model(X)          # Modeldən proqnoz
+#     loss = criterion(y_pred, y)  # İtki hesabla
+
+#     optimizer.zero_grad()      # Gradientləri sıfırla
+#     loss.backward()            # Gradientləri hesabla
+#     optimizer.step()           # Parametrləri yenilə
+
+
+# Hər epoch → model girişdən proqnoz alır, itki hesablamaq, gradientləri hesablayıb yeniləmək
+
+# Test etmək
+
+# test_patient = torch.tensor([[47,1,1,118,235,0,0,165,0,5.99,0,2,2]], dtype=torch.float32)
+# test_patient = torch.tensor(scaler.transform(test_patient.numpy()), dtype=torch.float32)
+
+# with torch.no_grad():
+#     prob = model(test_patient).item()
+#     print("Heart disease probability is:", prob)
+
+
+# scaler.transform → xüsusiyyətləri normallaşdırır
+
+# torch.no_grad() → test zamanı gradient hesablamır (hesablamanı sürətləndirir)
+
+# .item() → tək ədədi çıxarır
+
+# Nəticədə xəstənin ürək xəstəliyi ehtimalı verilir (0–1 arası)
 #endregion
 
 
@@ -2246,4 +2287,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-

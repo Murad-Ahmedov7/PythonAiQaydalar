@@ -1,9 +1,6 @@
 
 
-
-# 1) HER BIRINE BIR NUMUNE YAZ NEZERI OLARAQ 
-# 2) HER DERSIN SUAL-CAVABINA BAX.
-# 3) 9-CU DERSIN QUIZINE YENIDEN BAX. 
+#HER BIRINE BIR NMUNE YAZ NEZERI OLARAQ 
 
 
 
@@ -1834,7 +1831,6 @@ from sklearn.model_selection import train_test_split
 # 2️⃣ Hidden Layer — Gizli qatlar (hesablama və öyrənmə burada baş verir)
 # 3️⃣ Output Layer — Çıxış (məsələn, 0 və ya 1)
 
-
 # 🏁 ANN-in istifadə sahələri
 # ✔ Üz tanıma
 # ✔ Səs tanıma
@@ -1922,179 +1918,6 @@ from sklearn.model_selection import train_test_split
 #Input=>Weight=>Sum=>Activation=>Output(1 neyronun isi)
 
 #endregion
-
-#region PythonAi14
-
-
-
-#ilk 25 deq sual cavab
-
-#PyTorch
-# PyTorch Facebook (Meta) tərəfindən hazırlanmış, açıq-mənbə (open-source),
-#  xüsusilə dərin öyrənmə (deep learning) və neyron şəbəkələri
-#  qurmaq üçün istifadə olunan çox güclü bir machine learning framework-dür.
-
-
-
-
-
-# Scalar -> 5
-# Vector -> [2,3,4]
-# Matrix -> [[1,2],[3,4]]
-# Tensor -> [[[[1,1]],[2,2],[3,3]],[[4,4],[5,5],[6,6]],[[7,7]]]]
-
-
-# | Ad     | Ölcü | Nümunə                 |
-# | ------ | ---- | ---------------------- |
-# | Scalar | 0D   | `5`                    |
-# | Vector | 1D   | `[2,3,4]`              |
-# | Matrix | 2D   | `[[1,2],[3,4]]`        |
-# | Tensor | 3D+  | `[[[[1,1]],[2,2]...]]` |
-
-import torch
-#
-# #Scalar
-a=torch.tensor(5)
-#Vector
-b=torch.tensor([1,2,3])
-#Matrix
-c=torch.tensor([[1,2],[3,4]])
-
-
-
-
-
-
-#recordingin 1-ci hissesi 01.02.00
-
-
-# 1️⃣ Fully Connected Layer (nn.Linear)
-#
-# nn.Linear(in_features, out_features) → hər bir giriş neyronu hər çıxış neyronuna bağlıdır.
-#
-# Buna fully connected (tam bağlı) layer deyilir.
-
-# fc1: 2 giriş neyronu → 4 çıxış neyronu
-#
-# Hər 2 giriş hər 4 çıxış neyronuna bağlıdır → fully connected
-#
-# fc2: 4 giriş (hidden layer) → 1 çıxış
-#
-# Hər 4 giriş çıxış neyronuna bağlıdır → fully connected
-
-
-# Hidden layer inputdan böyük olmalıdır?
-#
-# Xeyr, məcbur deyil.
-#
-# Amma input-dan bir az daha böyük seçmək normaldır, ki model daha mürəkkəb nümunələri öyrənsin.
-
-
-
-# 1️⃣ Activation function nədir?
-#
-# Activation function (aktivasiya funksiyası) → neyronun çıxışını müəyyən qaydada dəyişdirən funksiyadır.
-#
-# Neyron şəbəkədə non-linearlıq əlavə etmək üçün istifadə olunur.
-#
-
-
-# | Funksiya | İstifadə                                                              |
-# | -------- | --------------------------------------------------------------------- |
-# | ReLU     | Hidden layer-lərdə (0-dan böyük dəyərləri saxlayır, mənfiləri 0 edir) |
-# | Sigmoid  | Çıxış layer-də, ehtimal üçün (0-1 aralığı)                            |
-# | Softmax  | Multi-class classification, ehtimalların cəmi 1 olur                  |
-
-
-# 1️⃣ Aktivasiya funksiyasının yeri
-#
-# ANN (Artificial Neural Network)-də aktivasiya funksiyası layer-lərin çıxışında yerləşir.
-#
-# Hər hidden layer-in sonunda
-#
-# Output layer-dən əvvəl (çox vaxt ehtimala çevirmək üçün)
-
-
-
-
-
-
-
-#endregion
-
-
-#region PythonAi15
-
-
-#ilk 23 deq sual cavab
-
-
-
-
-# Activation funksiyaları neyron şəbəkələrində neyronun çıxışını hesablamaq üçün istifadə olunur.(yeni cixisdan evvel hidden layerdan sonra )
-# Onlar neyronun “aktiv olub-olmamasını” müəyyənləşdirir və modelə xətti olmayanlıq (non-linearity) əlavə edir.
-# Əgər activation funksiyası olmasa, neyron şəbəkəsi yalnız xətti funksiyaları öyrənə bilər və mürəkkəb nümunələri tanıya bilməz.
-
-
-
-
-#her birini nezeri numune yaz............
-
-
-# Sigmoid – 0–1 arası ehtimal verir, adətən binary classification üçün.
-
-# Softmax – 0–1 arası ehtimal verir, multi-class classification üçün (siniflər üzrə cəmi 1 olur).
-
-
-# 1️⃣ Sigmoid
-
-# Çıxış: 0 – 1 arası
-
-# İstifadə: Binary classification (ikili təsnifat)
-
-# Dezavantaj: Vanishing gradient problem (çox böyük və ya kiçik x dəyərlərində gradient itir)
-
-
-
-# 2️⃣ ReLU (Rectified Linear Unit)
-
-# Çıxış: 0 – ∞
-
-# Mənfi dəyərləri 0 edir
-
-# İstifadə: Hidden layer-lərdə çox istifadə olunur
-
-# Dezavantaj: Dead neuron problem (bəzən neyron tamamilə deaktiv ola bilər)
-
-
-# 3️⃣ Softmax
-
-# Çıxış: 0 – 1 arası, cəmi 1
-
-# İstifadə: Multi-class classification (çoxlu sinifli təsnifat)
-
-#Dezavantaj: Softmax çoxlu siniflər üçün əla ehtimal verir, amma çox böyük və ya çoxlu logit-lərdə həssas və ağır ola bilər.
-
-
-
-
-# ReLU: mənfiləri tam 0 edir
-
-# Sigmoid: mənfiləri 0-a yaxın, amma sıfır deyil edir
-
-
-# Kodun izahı
-
-
-
-# ReLU → hidden layer-lərdə istifadə olunur (mənfiləri 0 edir, non-linearity əlavə edir)
-
-# Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
-
-
-
-#endregion
-
 
 #region PythonAi16
 
@@ -2246,4 +2069,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-

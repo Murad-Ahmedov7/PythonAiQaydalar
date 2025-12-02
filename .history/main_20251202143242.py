@@ -1962,7 +1962,27 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 
+# Tensor 3D-dir (3, 4, 5)
+#
+# 3 → neçə “blok” var
+#
+# 4 → hər blokda neçə sıra (row) var
+#
+# 5 → hər sırada neçə element (column) var
 
+# print(a)
+# print(b)
+# print(c)
+# d=torch.randn(3,4,5)
+# e=torch.randn(3,4,5,3)
+#
+# print(d)
+# print(e)
+#
+
+# x=torch.randn(5,5,5)
+# x=x.cuda() # GPU a gonder
+# print(x)
 
 
 #recordingin 1-ci hissesi 01.02.00
@@ -2004,6 +2024,7 @@ c=torch.tensor([[1,2],[3,4]])
 # | ReLU     | Hidden layer-lərdə (0-dan böyük dəyərləri saxlayır, mənfiləri 0 edir) |
 # | Sigmoid  | Çıxış layer-də, ehtimal üçün (0-1 aralığı)                            |
 # | Softmax  | Multi-class classification, ehtimalların cəmi 1 olur                  |
+# | Tanh     | Hidden layer-lərdə, -1 ilə 1 arasında dəyərlər                        |
 
 
 # 1️⃣ Aktivasiya funksiyasının yeri
@@ -2015,7 +2036,7 @@ c=torch.tensor([[1,2],[3,4]])
 # Output layer-dən əvvəl (çox vaxt ehtimala çevirmək üçün)
 
 
-
+#01.27.00-axira kimi bax
 
 
 
@@ -2023,77 +2044,6 @@ c=torch.tensor([[1,2],[3,4]])
 #endregion
 
 
-#region PythonAi15
-
-
-#ilk 23 deq sual cavab
-
-
-
-
-# Activation funksiyaları neyron şəbəkələrində neyronun çıxışını hesablamaq üçün istifadə olunur.(yeni cixisdan evvel hidden layerdan sonra )
-# Onlar neyronun “aktiv olub-olmamasını” müəyyənləşdirir və modelə xətti olmayanlıq (non-linearity) əlavə edir.
-# Əgər activation funksiyası olmasa, neyron şəbəkəsi yalnız xətti funksiyaları öyrənə bilər və mürəkkəb nümunələri tanıya bilməz.
-
-
-
-
-#her birini nezeri numune yaz............
-
-
-# Sigmoid – 0–1 arası ehtimal verir, adətən binary classification üçün.
-
-# Softmax – 0–1 arası ehtimal verir, multi-class classification üçün (siniflər üzrə cəmi 1 olur).
-
-
-# 1️⃣ Sigmoid
-
-# Çıxış: 0 – 1 arası
-
-# İstifadə: Binary classification (ikili təsnifat)
-
-# Dezavantaj: Vanishing gradient problem (çox böyük və ya kiçik x dəyərlərində gradient itir)
-
-
-
-# 2️⃣ ReLU (Rectified Linear Unit)
-
-# Çıxış: 0 – ∞
-
-# Mənfi dəyərləri 0 edir
-
-# İstifadə: Hidden layer-lərdə çox istifadə olunur
-
-# Dezavantaj: Dead neuron problem (bəzən neyron tamamilə deaktiv ola bilər)
-
-
-# 3️⃣ Softmax
-
-# Çıxış: 0 – 1 arası, cəmi 1
-
-# İstifadə: Multi-class classification (çoxlu sinifli təsnifat)
-
-#Dezavantaj: Softmax çoxlu siniflər üçün əla ehtimal verir, amma çox böyük və ya çoxlu logit-lərdə həssas və ağır ola bilər.
-
-
-
-
-# ReLU: mənfiləri tam 0 edir
-
-# Sigmoid: mənfiləri 0-a yaxın, amma sıfır deyil edir
-
-
-# Kodun izahı
-
-
-
-# ReLU → hidden layer-lərdə istifadə olunur (mənfiləri 0 edir, non-linearity əlavə edir)
-
-# Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
-
-
-
-#endregion
 
 
 #region PythonAi16
@@ -2246,4 +2196,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-

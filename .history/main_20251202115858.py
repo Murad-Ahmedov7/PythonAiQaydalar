@@ -1,9 +1,6 @@
 
 
-
-# 1) HER BIRINE BIR NUMUNE YAZ NEZERI OLARAQ 
-# 2) HER DERSIN SUAL-CAVABINA BAX.
-# 3) 9-CU DERSIN QUIZINE YENIDEN BAX. 
+#HER BIRINE BIR NMUNE YAZ NEZERI OLARAQ 
 
 
 
@@ -1818,284 +1815,6 @@ from sklearn.model_selection import train_test_split
 
 
 
-#region PythonAi13
-
-
-
-# 🚀 ANN nədir?
-# ANN = Artificial Neural Network = Süni Neyron Şəbəkəsi
-# Komputerin beyin kimi öyrənmə üsuludur.
-
-# 🧠 ANN necə işləyir?
-# ANN məlumatı çoxlu kiçik neyronlar içindən keçirərək nəticə çıxaran alqoritmdir.
-
-# 🔌 ANN-in strukturu
-# 1️⃣ Input Layer — Giriş (məsələn, 13 xüsusiyyət)
-# 2️⃣ Hidden Layer — Gizli qatlar (hesablama və öyrənmə burada baş verir)
-# 3️⃣ Output Layer — Çıxış (məsələn, 0 və ya 1)
-
-
-# 🏁 ANN-in istifadə sahələri
-# ✔ Üz tanıma
-# ✔ Səs tanıma
-# ✔ Şəkil təsnifatı
-# ✔ Proqnozlamalar
-# ✔ Tibbi diaqnostika
-# ✔ Döyüş oyunlarında botlar
-# ✔ ChatGPT və digər AI modelləri
-
-# 📊 Regression vs Classification
-# | Xüsusiyyət     | Regression                          | Classification                        |
-
-# | Çıxış tipi     | Real rəqəm (continuous)             | Sinif (categorical)                   |
-# | Sual tipi      | Nə qədər / neçə?                    | Hansı? Hə/Yox?                        |
-# | Nümunə         | Ev qiyməti, maaş, temperatur        | Xəstə/sağlam, spam, pişik/it          |
-# | Ehtimal        | ❌ Yox                               | ✅ Ola bilər (sigmoid/softmax)         |
-# | Model nümunəsi | Linear Regression, ANN (linear)    | Logistic Regression, ANN (sigmoid)   |
-
-# 🟢 Neyronun linear çıxışı (1 neyron)
-# Düstur: y = w1*x1 + w2*x2 + ... + wn*xn + b
-# x → giriş məlumatları (features), misal: yaş, boy, çəki
-# w → girişlərin çəkisi (weight), böyük çəkilər → daha əhəmiyyətli
-# b → bias (sabit dəyər)
-
-# Misal:
-# x1 = 2, x2 = 3
-# w1 = 0.5, w2 = 1.2
-# b = 0.7
-# y = 0.5*2 + 1.2*3 + 0.7 = 5.3
-
-# 🟢 Bias nədir?
-# Bias = neyronun başlanğıc nöqtəsi, girişlər 0 olsa da çıxış verə bilir
-# Misal:
-# x1 = 0, x2 = 0, w1 = 0.5, w2 = 1.2, b = 0.7 → y = 0.7
-
-# 🟢 Input → Weight → Sum → Activation → Output
-# - Input: x1, x2, ..., xn
-# - Weight: w1, w2, ..., wn
-# - Sum: Σ(wx) + b
-# - Activation: Step / Sigmoid / ReLU
-# - Output: Neyronun proqnozu (0/1 və ya ehtimal)
-
-# 🟢 Perceptron
-# - Ən sadə neyron modeli
-# - Binary classification üçün
-# - Aktivasiya funksiyası: Step (0/1)
-
-# 🟢 Multi-Layer Perceptron (MLP)
-# - Çox qatlı neyron şəbəkəsi
-# - Input layer → Hidden layers → Output layer
-# - Gizli qatlar mürəkkəb patternləri öyrənir
-# - Aktivasiya funksiyası: ReLU, Sigmoid, Softmax
-# - Binary və Multi-class classification, regression üçün istifadə oluna bilər
-
-# 🔹 Linear vs Non-linear
-# - Linear neuron: y = w1*x1 + w2*x2 + ... + wn*xn + b → düz xətt
-# - Non-linear neuron: y = activation(wx + b) → parabola, sigmoid, softmax
-# - Non-linear olmadan mürəkkəb patternlər öyrənilə bilməz
-
-# 🟢 Qaydalar / əsas anlayışlar
-# 1. Hər giriş öz çəkisi ilə vurulur, sonra hamısı toplanır, bias əlavə olunur.
-# 2. Aktivasiya funksiyası linear çıxışı ehtimala və ya 0/1 kimi sərt çıxışa çevirir.
-# 3. Bias olmadan xətt həmişə orijindən keçir, model məlumatı yaxşı uyğunlaşdıra bilmir.
-# 4. MLP-də hidden qatlar modelin non-linear patternləri öyrənməsini təmin edir.
-# 5. ANN-in çıxışı problemi görə dəyişir:
-#    - Binary classification → 0/1 və ya 0–1 ehtimal
-#    - Multi-class classification → sinif indeksləri (0,1,2,...)
-#    - Regression → real dəyər
-
-
-
-
-# 🟢 Perceptron və Neyronun İşləmə Mexanizmi
-
-#meselen 13 neyron inputu varsa hiddenda 32 olmalidi
-
-# Perceptron = ən sadə neyron (Artificial Neuron) modelidir.
-
-# x1 --- w1 \
-# x2 --- w2  ---> Σ (toplama) ---> Aktivasiya → y (0/1)
-# x3 --- w3 /
-#           +
-#           b (bias)
-
-#Input=>Weight=>Sum=>Activation=>Output(1 neyronun isi)
-
-#endregion
-
-#region PythonAi14
-
-
-
-#ilk 25 deq sual cavab
-
-#PyTorch
-# PyTorch Facebook (Meta) tərəfindən hazırlanmış, açıq-mənbə (open-source),
-#  xüsusilə dərin öyrənmə (deep learning) və neyron şəbəkələri
-#  qurmaq üçün istifadə olunan çox güclü bir machine learning framework-dür.
-
-
-
-
-
-# Scalar -> 5
-# Vector -> [2,3,4]
-# Matrix -> [[1,2],[3,4]]
-# Tensor -> [[[[1,1]],[2,2],[3,3]],[[4,4],[5,5],[6,6]],[[7,7]]]]
-
-
-# | Ad     | Ölcü | Nümunə                 |
-# | ------ | ---- | ---------------------- |
-# | Scalar | 0D   | `5`                    |
-# | Vector | 1D   | `[2,3,4]`              |
-# | Matrix | 2D   | `[[1,2],[3,4]]`        |
-# | Tensor | 3D+  | `[[[[1,1]],[2,2]...]]` |
-
-import torch
-#
-# #Scalar
-a=torch.tensor(5)
-#Vector
-b=torch.tensor([1,2,3])
-#Matrix
-c=torch.tensor([[1,2],[3,4]])
-
-
-
-
-
-
-#recordingin 1-ci hissesi 01.02.00
-
-
-# 1️⃣ Fully Connected Layer (nn.Linear)
-#
-# nn.Linear(in_features, out_features) → hər bir giriş neyronu hər çıxış neyronuna bağlıdır.
-#
-# Buna fully connected (tam bağlı) layer deyilir.
-
-# fc1: 2 giriş neyronu → 4 çıxış neyronu
-#
-# Hər 2 giriş hər 4 çıxış neyronuna bağlıdır → fully connected
-#
-# fc2: 4 giriş (hidden layer) → 1 çıxış
-#
-# Hər 4 giriş çıxış neyronuna bağlıdır → fully connected
-
-
-# Hidden layer inputdan böyük olmalıdır?
-#
-# Xeyr, məcbur deyil.
-#
-# Amma input-dan bir az daha böyük seçmək normaldır, ki model daha mürəkkəb nümunələri öyrənsin.
-
-
-
-# 1️⃣ Activation function nədir?
-#
-# Activation function (aktivasiya funksiyası) → neyronun çıxışını müəyyən qaydada dəyişdirən funksiyadır.
-#
-# Neyron şəbəkədə non-linearlıq əlavə etmək üçün istifadə olunur.
-#
-
-
-# | Funksiya | İstifadə                                                              |
-# | -------- | --------------------------------------------------------------------- |
-# | ReLU     | Hidden layer-lərdə (0-dan böyük dəyərləri saxlayır, mənfiləri 0 edir) |
-# | Sigmoid  | Çıxış layer-də, ehtimal üçün (0-1 aralığı)                            |
-# | Softmax  | Multi-class classification, ehtimalların cəmi 1 olur                  |
-
-
-# 1️⃣ Aktivasiya funksiyasının yeri
-#
-# ANN (Artificial Neural Network)-də aktivasiya funksiyası layer-lərin çıxışında yerləşir.
-#
-# Hər hidden layer-in sonunda
-#
-# Output layer-dən əvvəl (çox vaxt ehtimala çevirmək üçün)
-
-
-
-
-
-
-
-#endregion
-
-
-#region PythonAi15
-
-
-#ilk 23 deq sual cavab
-
-
-
-
-# Activation funksiyaları neyron şəbəkələrində neyronun çıxışını hesablamaq üçün istifadə olunur.(yeni cixisdan evvel hidden layerdan sonra )
-# Onlar neyronun “aktiv olub-olmamasını” müəyyənləşdirir və modelə xətti olmayanlıq (non-linearity) əlavə edir.
-# Əgər activation funksiyası olmasa, neyron şəbəkəsi yalnız xətti funksiyaları öyrənə bilər və mürəkkəb nümunələri tanıya bilməz.
-
-
-
-
-#her birini nezeri numune yaz............
-
-
-# Sigmoid – 0–1 arası ehtimal verir, adətən binary classification üçün.
-
-# Softmax – 0–1 arası ehtimal verir, multi-class classification üçün (siniflər üzrə cəmi 1 olur).
-
-
-# 1️⃣ Sigmoid
-
-# Çıxış: 0 – 1 arası
-
-# İstifadə: Binary classification (ikili təsnifat)
-
-# Dezavantaj: Vanishing gradient problem (çox böyük və ya kiçik x dəyərlərində gradient itir)
-
-
-
-# 2️⃣ ReLU (Rectified Linear Unit)
-
-# Çıxış: 0 – ∞
-
-# Mənfi dəyərləri 0 edir
-
-# İstifadə: Hidden layer-lərdə çox istifadə olunur
-
-# Dezavantaj: Dead neuron problem (bəzən neyron tamamilə deaktiv ola bilər)
-
-
-# 3️⃣ Softmax
-
-# Çıxış: 0 – 1 arası, cəmi 1
-
-# İstifadə: Multi-class classification (çoxlu sinifli təsnifat)
-
-#Dezavantaj: Softmax çoxlu siniflər üçün əla ehtimal verir, amma çox böyük və ya çoxlu logit-lərdə həssas və ağır ola bilər.
-
-
-
-
-# ReLU: mənfiləri tam 0 edir
-
-# Sigmoid: mənfiləri 0-a yaxın, amma sıfır deyil edir
-
-
-# Kodun izahı
-
-
-
-# ReLU → hidden layer-lərdə istifadə olunur (mənfiləri 0 edir, non-linearity əlavə edir)
-
-# Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
-
-
-
-#endregion
-
-
 #region PythonAi16
 
 
@@ -2210,6 +1929,54 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 
+# import cv2
+# import numpy as np
+# import matplotlib.pyplot as plt
+
+
+# img = np.array([
+#     [10, 10, 10, 10, 10, 10, 10],
+#     [10, 255, 255, 10, 255, 255, 10],
+#     [10, 255, 10, 255, 10, 255, 10],
+#     [10, 255, 10, 10, 10, 255, 10],
+#     [10, 255, 10, 10, 10, 255, 10],
+#     [10, 10, 255, 10, 255, 10, 10],
+#     [10, 10, 10, 255, 10, 10, 10],
+# ],dtype=np.float32)
+
+# # Edge detection filter
+# kernel = np.array([
+#     [-1, -1, -1],
+#     [-1, 8, -1],
+#     [-1, -1, -1],
+# ],dtype=np.float32)
+
+
+# #Convolution
+# filtered=cv2.filter2D(img, -1, kernel)
+
+# plt.subplot(1,2,1)
+# plt.title('Original Image')
+# plt.imshow(img,cmap='gray')
+
+# plt.subplot(1,2,2)
+# plt.title('Filtered Image')
+# plt.imshow(filtered,cmap='gray')
+
+# plt.show()
+
+
+# Burada neyron şəbəkəsi yoxdur.
+
+# CNN-də convolution layer avtomatik öyrənilən filterlər istifadə edir.
+
+# Sənin kodunda isə kernel əl ilə təyin olunub ([-1,-1,-1], …)
+
+# CNN layerləri:
+
+# Convolution → ReLU → Pooling → Flatten → Fully Connected
+
+# Sənin kod sadəcə manual convolution + edge detection edir.
 
 
 
@@ -2246,4 +2013,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-

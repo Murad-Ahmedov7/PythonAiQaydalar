@@ -2082,17 +2082,203 @@ c=torch.tensor([[1,2],[3,4]])
 
 # Sigmoid: mənfiləri 0-a yaxın, amma sıfır deyil edir
 
+# import torch
+# # x=torch.tensor([-2.0,-1.0,0,1,2,3,4])
+# # sigmo=torch.sigmoid(x)
+# # print(sigmo)
+
+
+# # x=torch.tensor([-3.1,-1,1,0,2.1,3.75])
+# # relu=torch.relu(x)
+# # print(relu)
+
+
+# # x=torch.tensor([2.0,1.0,0.1])
+# # softmax=torch.softmax(x,dim=0)
+# # print(softmax)
+
+
+# # x=torch.tensor([
+# #     [1.0,2.0,3.0],
+# #     [0.0,5.0,6.0],
+# #     [2.0,1.0,3.0]
+# # ])
+# # softmax=torch.softmax(x,dim=1)
+# # print(softmax)
+
+
+
+# | `dim` | Softmax necə işləyir | Cəmi 1 olan nədir? |
+# | ----- | -------------------- | ------------------ |
+# | 0     | Sütun üzrə           | Hər sütun cəmi 1   |
+# | 1     | Sıra üzrə            | Hər sıra cəmi 1    |
+
+
+
+
+# import pandas as pd
+# df=pd.read_csv("heart_disease.csv")
+# X=df.drop("target",axis=1).values
+# y=df["target"].values
+
+
+# # X - 13
+# # y - 1
+
+
+# from sklearn.preprocessing import StandardScaler
+
+
+# scaler=StandardScaler()
+# X=scaler.fit_transform(X)
+
+
+# import torch
+
+
+# X=torch.tensor(X,dtype=torch.float)
+# y=torch.tensor(y,dtype=torch.float).view(-1,1)
+
+
+
+# 0 → xəstəlik ehtimalı çox aşağı → sağlam sayılır
+
+# 1 → xəstəlik ehtimalı yüksək → xəstə sayılır
+
+
+# import torch.nn as nn
+
+
+# class HeartNet(nn.Module):
+#    def __init__(self):
+#        super().__init__()
+#        self.fc1=nn.Linear(13,32)
+#        self.fc2=nn.Linear(32,16)
+#        self.fc3=nn.Linear(16,1)
+
+
+#    def forward(self, x):
+#        x=torch.relu(self.fc1(x)) # gizli layer 1
+#        x=torch.relu(self.fc2(x)) # gizli layer 2
+#        x=torch.sigmoid(self.fc3(x)) #chixish ehtimal 0-1
+#        return x
+
+
+# model=HeartNet()
+# criterion=nn.BCELoss()
+# optimizer=torch.optim.Adam(model.parameters(),lr=0.001)
+
+
+# epochs=3000
+
+
+# for epoch in range(epochs):
+#    y_pred=model(X)
+#    loss=criterion(y_pred,y)
+
+
+#    optimizer.zero_grad()
+#    loss.backward()
+#    optimizer.step()
+
+
+#    # if (epoch+0)%400==0:
+#    #     print(f"Epoch {epoch} Loss: {loss.item():.4f}")
+
+
+
+
+# test_patient=torch.tensor([[47,1,1,118,235,0,0,165,0,5.99,0,2,2]],dtype=torch.float32)
+# test_patient=torch.tensor(scaler.transform(test_patient.numpy()),dtype=torch.float32)
+
+
+# with torch.no_grad():
+#    prob=model(test_patient).item()
+#    print("Heart disease probability is:",prob)
+
+
+
 
 # Kodun izahı
 
+# Məlumatları Tensor-a çevirmək
+
+# X = torch.tensor(X, dtype=torch.float)  # X xüsusiyyətlər matrisi
+# y = torch.tensor(y, dtype=torch.float).view(-1,1)  # y çıxışlar (0/1), sütun vektoru şəklində
+
+
+# view(-1,1) → y-i 2D sütun vektoruna çevirir, çünki BCELoss bunu tələb edir.
+
+# Neyron şəbəkəsi yaratmaq
+
+# class HeartNet(nn.Module):
+#    def __init__(self):
+#        super().__init__()
+#        self.fc1 = nn.Linear(13, 32)  # 13 giriş → 32 neyron (hidden layer 1)
+#        self.fc2 = nn.Linear(32, 16)  # 32 → 16 neyron (hidden layer 2)
+#        self.fc3 = nn.Linear(16, 1)   # 16 → 1 neyron (çıxış layer)
+
+
+# Linear(in, out) → girişdə in neyron, çıxışda out neyron
+
+# Üç qatlı (2 hidden, 1 çıxış) tam bağlı (fully connected) şəbəkə
+
+# Forward pass (irəli ötürmə)
+
+#    def forward(self, x):
+#        x = torch.relu(self.fc1(x))      # Hidden layer 1 + ReLU
+#        x = torch.relu(self.fc2(x))      # Hidden layer 2 + ReLU
+#        x = torch.sigmoid(self.fc3(x))   # Çıxış layer + Sigmoid (0–1 ehtimal)
+#        return x
 
 
 # ReLU → hidden layer-lərdə istifadə olunur (mənfiləri 0 edir, non-linearity əlavə edir)
 
 # Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
 
+# Model, itki funksiyası və optimizator
+
+# model = HeartNet()
+# criterion = nn.BCELoss()  # Binary Cross Entropy loss
+# optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 
+# BCELoss → binary classification üçün
+
+# Adam → məşhur optimizator, gradient descent-i adaptiv edir
+
+# Təlim dövrü (Training loop)
+
+# epochs = 3000
+
+# for epoch in range(epochs):
+#     y_pred = model(X)          # Modeldən proqnoz
+#     loss = criterion(y_pred, y)  # İtki hesabla
+
+#     optimizer.zero_grad()      # Gradientləri sıfırla
+#     loss.backward()            # Gradientləri hesabla
+#     optimizer.step()           # Parametrləri yenilə
+
+
+# Hər epoch → model girişdən proqnoz alır, itki hesablamaq, gradientləri hesablayıb yeniləmək
+
+# Test etmək
+
+# test_patient = torch.tensor([[47,1,1,118,235,0,0,165,0,5.99,0,2,2]], dtype=torch.float32)
+# test_patient = torch.tensor(scaler.transform(test_patient.numpy()), dtype=torch.float32)
+
+# with torch.no_grad():
+#     prob = model(test_patient).item()
+#     print("Heart disease probability is:", prob)
+
+
+# scaler.transform → xüsusiyyətləri normallaşdırır
+
+# torch.no_grad() → test zamanı gradient hesablamır (hesablamanı sürətləndirir)
+
+# .item() → tək ədədi çıxarır
+
+# Nəticədə xəstənin ürək xəstəliyi ehtimalı verilir (0–1 arası)
 #endregion
 
 
@@ -2246,4 +2432,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-

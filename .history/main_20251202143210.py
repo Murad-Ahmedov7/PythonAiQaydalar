@@ -1962,7 +1962,27 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 
+# Tensor 3D-dir (3, 4, 5)
+#
+# 3 → neçə “blok” var
+#
+# 4 → hər blokda neçə sıra (row) var
+#
+# 5 → hər sırada neçə element (column) var
 
+# print(a)
+# print(b)
+# print(c)
+# d=torch.randn(3,4,5)
+# e=torch.randn(3,4,5,3)
+#
+# print(d)
+# print(e)
+#
+
+# x=torch.randn(5,5,5)
+# x=x.cuda() # GPU a gonder
+# print(x)
 
 
 #recordingin 1-ci hissesi 01.02.00
@@ -2004,6 +2024,7 @@ c=torch.tensor([[1,2],[3,4]])
 # | ReLU     | Hidden layer-lərdə (0-dan böyük dəyərləri saxlayır, mənfiləri 0 edir) |
 # | Sigmoid  | Çıxış layer-də, ehtimal üçün (0-1 aralığı)                            |
 # | Softmax  | Multi-class classification, ehtimalların cəmi 1 olur                  |
+# | Tanh     | Hidden layer-lərdə, -1 ilə 1 arasında dəyərlər                        |
 
 
 # 1️⃣ Aktivasiya funksiyasının yeri
@@ -2015,85 +2036,157 @@ c=torch.tensor([[1,2],[3,4]])
 # Output layer-dən əvvəl (çox vaxt ehtimala çevirmək üçün)
 
 
+#01.27.00-axira kimi bax
+
+
+#Accuracy
+with torch.no_grad():
+    probs=model(x)
+    preds=(probs>=0.5).float()
+
+    correct=(preds==y).float().mean().item()
+    accuracy = correct*100
+    print(f"Train accuracy:{accuracy:.2f}")
+
+
+
+X = torch.tensor([
+   [1.0,  60.0,  40.0],   # az hazırlaşıb, davamiyyəti zəif, keçmiş balı aşağı
+   [2.0,  70.0,  50.0],
+   [3.0,  65.0,  55.0],
+   [4.0,  80.0,  60.0],
+   [5.0,  85.0,  70.0],
+   [6.0,  90.0,  75.0],
+   [7.0,  95.0,  80.0],
+   [8.0,  98.0,  90.0],
+], dtype=torch.float32)
+
+
+
+
+y = torch.tensor([
+   [0],
+   [0],
+   [0],
+   [1],
+   [1],
+   [1],
+   [1],
+   [1],
+], dtype=torch.float32)
 
 
 
 
 
+
+
+
+X_norm = X.clone()
+X_norm[:, 0] = X[:, 0] / 10.0    # study_hours: max təxmini 10 saat
+X_norm[:, 1] = X[:, 1] / 100.0   # attendance: 0–100%
+X_norm[:, 2] = X[:, 2] / 100.0   # prev_score: 0–100 bal
+
+
+class StudentNet(nn.Module):
+   def __init__(self):
+       super().__init__()
+       self.fc1 = nn.Linear(3, 8)   # 3 input → 8 neuron
+       self.fc2 = nn.Linear(8, 1)   # 8 neuron → 1 çıxış (ehtimal)
+
+
+   def forward(self, x):
+       x = torch.relu(self.fc1(x))      # gizli layer + ReLU
+       x = torch.sigmoid(self.fc2(x))   # çıxış layer + Sigmoid (0–1 ehtimal)
+       return x
+
+
+
+
+model = StudentNet()
+
+
+
+
+criterion = nn.BCELoss()                        # Binary Cross Entropy (keçdi/kəsildi)
+optimizer = optim.Adam(model.parameters(), lr=0.05)
+
+
+
+
+# 5) Training loop
+epochs = 2000
+
+
+for epoch in range(epochs):
+   # Forward pass
+   y_pred = model(X_norm)          # model input → output
+   loss = criterion(y_pred, y)     # y_pred ilə real y müqayisə
+
+
+   # Gradientləri sıfırla
+   optimizer.zero_grad()
+
+
+   # Backward pass (gradient hesabla)
+   loss.backward()
+
+
+   # Weight-ləri yenilə
+   optimizer.step()
+
+
+   if (epoch+1) % 400 == 0:
+       # loss.item() – scalar float çıxardır
+       print(f"Epoch {epoch+1}/{epochs}, Loss = {loss.item():.4f}")
+
+
+# 6) Trainingdən sonra nəticələrə baxaq
+# print("\nTrain nəticələri:")
+# with torch.no_grad():   # test zamanı gradient hesablamırıq
+#     probs = model(X_norm)         # ehtimallar (0–1)
+#     preds = (probs >= 0.5).float()  # 0.5-dən yuxarını 1 sayırıq
+#
+#     for i in range(len(X)):
+#         print(
+#             f"Input={X[i].tolist()}  |  Real={int(y[i].item())}  "
+#             f"|  Prob={probs[i].item():.2f}  |  Pred={int(preds[i].item())}"
+#         )
+
+
+
+
+
+
+print("\nYeni tələbələr üçün proqnozlar:")
+
+
+new_students = torch.tensor([
+   [2.0, 65.0, 45.0],   # az hazırlaşır, ortalama davamiyyət, zəif keçmiş bal
+   [5.0, 80.0, 60.0],   # normal hazırlaşır, normal davamiyyət, orta keçmiş bal
+   [7.0, 95.0, 85.0],   # çox hazırlaşır, yüksək davamiyyət, güclü keçmiş bal
+], dtype=torch.float32)
+
+
+new_norm = new_students.clone()
+new_norm[:, 0] = new_students[:, 0] / 10.0
+new_norm[:, 1] = new_students[:, 1] / 100.0
+new_norm[:, 2] = new_students[:, 2] / 100.0
+
+
+with torch.no_grad():
+   new_probs = model(new_norm)
+   new_preds = (new_probs >= 0.5).float()
+
+
+   for i in range(len(new_students)):
+       print(
+           f"Student={new_students[i].tolist()}  |  Pass_Prob={new_probs[i].item():.2f}  "
+           f"|  Predicted={'KECHDI' if new_preds[i].item()==1 else 'KESILDI'}"
+       )
 #endregion
 
 
-#region PythonAi15
-
-
-#ilk 23 deq sual cavab
-
-
-
-
-# Activation funksiyaları neyron şəbəkələrində neyronun çıxışını hesablamaq üçün istifadə olunur.(yeni cixisdan evvel hidden layerdan sonra )
-# Onlar neyronun “aktiv olub-olmamasını” müəyyənləşdirir və modelə xətti olmayanlıq (non-linearity) əlavə edir.
-# Əgər activation funksiyası olmasa, neyron şəbəkəsi yalnız xətti funksiyaları öyrənə bilər və mürəkkəb nümunələri tanıya bilməz.
-
-
-
-
-#her birini nezeri numune yaz............
-
-
-# Sigmoid – 0–1 arası ehtimal verir, adətən binary classification üçün.
-
-# Softmax – 0–1 arası ehtimal verir, multi-class classification üçün (siniflər üzrə cəmi 1 olur).
-
-
-# 1️⃣ Sigmoid
-
-# Çıxış: 0 – 1 arası
-
-# İstifadə: Binary classification (ikili təsnifat)
-
-# Dezavantaj: Vanishing gradient problem (çox böyük və ya kiçik x dəyərlərində gradient itir)
-
-
-
-# 2️⃣ ReLU (Rectified Linear Unit)
-
-# Çıxış: 0 – ∞
-
-# Mənfi dəyərləri 0 edir
-
-# İstifadə: Hidden layer-lərdə çox istifadə olunur
-
-# Dezavantaj: Dead neuron problem (bəzən neyron tamamilə deaktiv ola bilər)
-
-
-# 3️⃣ Softmax
-
-# Çıxış: 0 – 1 arası, cəmi 1
-
-# İstifadə: Multi-class classification (çoxlu sinifli təsnifat)
-
-#Dezavantaj: Softmax çoxlu siniflər üçün əla ehtimal verir, amma çox böyük və ya çoxlu logit-lərdə həssas və ağır ola bilər.
-
-
-
-
-# ReLU: mənfiləri tam 0 edir
-
-# Sigmoid: mənfiləri 0-a yaxın, amma sıfır deyil edir
-
-
-# Kodun izahı
-
-
-
-# ReLU → hidden layer-lərdə istifadə olunur (mənfiləri 0 edir, non-linearity əlavə edir)
-
-# Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
-
-
-
-#endregion
 
 
 #region PythonAi16
@@ -2246,4 +2339,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-

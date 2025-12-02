@@ -2026,71 +2026,13 @@ c=torch.tensor([[1,2],[3,4]])
 #region PythonAi15
 
 
-#ilk 23 deq sual cavab
-
-
-
-
-# Activation funksiyaları neyron şəbəkələrində neyronun çıxışını hesablamaq üçün istifadə olunur.(yeni cixisdan evvel hidden layerdan sonra )
-# Onlar neyronun “aktiv olub-olmamasını” müəyyənləşdirir və modelə xətti olmayanlıq (non-linearity) əlavə edir.
-# Əgər activation funksiyası olmasa, neyron şəbəkəsi yalnız xətti funksiyaları öyrənə bilər və mürəkkəb nümunələri tanıya bilməz.
-
-
-
-
-#her birini nezeri numune yaz............
-
-
-# Sigmoid – 0–1 arası ehtimal verir, adətən binary classification üçün.
-
-# Softmax – 0–1 arası ehtimal verir, multi-class classification üçün (siniflər üzrə cəmi 1 olur).
-
-
-# 1️⃣ Sigmoid
-
-# Çıxış: 0 – 1 arası
-
-# İstifadə: Binary classification (ikili təsnifat)
-
-# Dezavantaj: Vanishing gradient problem (çox böyük və ya kiçik x dəyərlərində gradient itir)
-
-
-
-# 2️⃣ ReLU (Rectified Linear Unit)
-
-# Çıxış: 0 – ∞
-
-# Mənfi dəyərləri 0 edir
-
-# İstifadə: Hidden layer-lərdə çox istifadə olunur
-
-# Dezavantaj: Dead neuron problem (bəzən neyron tamamilə deaktiv ola bilər)
-
-
-# 3️⃣ Softmax
-
-# Çıxış: 0 – 1 arası, cəmi 1
-
-# İstifadə: Multi-class classification (çoxlu sinifli təsnifat)
-
-#Dezavantaj: Softmax çoxlu siniflər üçün əla ehtimal verir, amma çox böyük və ya çoxlu logit-lərdə həssas və ağır ola bilər.
-
-
-
-
-# ReLU: mənfiləri tam 0 edir
-
-# Sigmoid: mənfiləri 0-a yaxın, amma sıfır deyil edir
-
-
-# Kodun izahı
-
-
-
-# ReLU → hidden layer-lərdə istifadə olunur (mənfiləri 0 edir, non-linearity əlavə edir)
-
-# Sigmoid → çıxışda ehtimal verir (0–1 arası), çünki xəstəliyin olub-olmaması binary
-
+# 1️⃣ Aktivasiya funksiyasının yeri
+#
+# ANN (Artificial Neural Network)-də aktivasiya funksiyası layer-lərin çıxışında yerləşir.
+#
+# Hər hidden layer-in sonunda
+#
+# Output layer-dən əvvəl (çox vaxt ehtimala çevirmək üçün)
 
 
 #endregion
@@ -2246,4 +2188,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #endregion
-
