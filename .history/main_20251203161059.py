@@ -2249,7 +2249,6 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 #region PythonAi17
-
 # Lesson17:
 
 # ResNet18= ResNet-18, 2015-ci ildə Microsoft Research tərəfindən yaradılmış Residual Network ailəsinə aid olan, 18 qatlı (layer) bir Convolutional Neural Network-dir (CNN).

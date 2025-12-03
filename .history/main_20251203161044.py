@@ -2247,21 +2247,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 #endregion
 
-
-#region PythonAi17
-
-# Lesson17:
-
-# ResNet18= ResNet-18, 2015-ci ildə Microsoft Research tərəfindən yaradılmış Residual Network ailəsinə aid olan, 18 qatlı (layer) bir Convolutional Neural Network-dir (CNN).
-# Buradakı “18” sadəcə — qatların sayıdır.
-# neye gore ResNet18?: Modelə “layer-ləri keçib getməyə” icazə verir → bu da dərin şəbəkələrdə yaranan vanishing gradient problemini öldürür.
-# ResNet-18-in üstünlükləri
-# Yüngül və sürətli
-# Az GPU RAM istəyir
-# Training-i stabil
-# Overfitting az olur
-# Transfer learning üçün çox əlverişli
-# Accuracy normaldır (ResNet50 qədər olmasa da)
-
-
-#endregion
