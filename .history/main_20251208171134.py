@@ -2417,24 +2417,5 @@ c=torch.tensor([[1,2],[3,4]])
 
 #region PythonAi20 Imtahana hazırlıq
 
-#1)Pandas DataFrame ne ucundur.
-
-# pandas DataFrame ikiölçülü məlumatları (cədvəl kimi) saxlamaq və onları analiz, dəyişiklik və emal etmək üçün istifadə olunan obyekt tipidir.
-#ve excel tipli melumatlari saxlayirdi.
-
-
-#2)Outlier nedir ve onu nece tapmaq olar?
-
-# Q1 — verilənlərin 25%-lik kvantili (aşağı çeyrek)
-
-# Q3 — verilənlərin 75%-lik kvantili (yuxarı çeyrek)
-
-#IQR=Q3-Q1
-# Outlier-lər isə belə müəyyən olunur:
-
-# Aşağı outlier: 
-# <𝑄1 − 1.5 ⋅ 𝐼 𝑄 𝑅 <Q1−1.5⋅IQR
-
-# Yuxarı outlier: > 𝑄 3+ 1.5⋅𝐼𝑄𝑅 >Q3+1.5⋅IQR
-#18 deq-den davam et 
+#1)Pandas dataframe ne ucundr
 #endregion

@@ -2429,12 +2429,6 @@ c=torch.tensor([[1,2],[3,4]])
 
 # Q3 — verilənlərin 75%-lik kvantili (yuxarı çeyrek)
 
-#IQR=Q3-Q1
-# Outlier-lər isə belə müəyyən olunur:
+#IQR=
 
-# Aşağı outlier: 
-# <𝑄1 − 1.5 ⋅ 𝐼 𝑄 𝑅 <Q1−1.5⋅IQR
-
-# Yuxarı outlier: > 𝑄 3+ 1.5⋅𝐼𝑄𝑅 >Q3+1.5⋅IQR
-#18 deq-den davam et 
 #endregion
