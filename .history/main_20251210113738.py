@@ -2256,19 +2256,13 @@ c=torch.tensor([[1,2],[3,4]])
 # Buradakı “18” sadəcə — qatların sayıdır.
 # neye gore ResNet18?: Modelə “layer-ləri keçib getməyə” icazə verir → bu da dərin şəbəkələrdə yaranan vanishing gradient problemini öldürür.
 # ResNet-18-in üstünlükləri
-# Yüngül və sürətli(yox eslinde daha gec ama daha yaxsi isletyir)
+# Yüngül və sürətli
 # Az GPU RAM istəyir
 # Training-i stabil
 # Overfitting az olur
 # Transfer learning üçün çox əlverişli
 # Accuracy normaldır (ResNet50 qədər olmasa da)
 
-
-
-
-# 600 filter nə deməkdir?
-
-# Bir convolutional layer-də 600 filter var demək → layer 600 fərqli xüsusiyyət çıxarır.
 
 #endregion
 
@@ -2441,7 +2435,7 @@ c=torch.tensor([[1,2],[3,4]])
 # Aşağı outlier: 
 # <𝑄1 − 1.5 ⋅ 𝐼 𝑄 𝑅 <Q1−1.5⋅IQR
 
-# Yuxarı outlier: > 𝑄3+ 1.5⋅𝐼𝑄𝑅 >Q3+1.5⋅IQR
+# Yuxarı outlier: > 𝑄 3+ 1.5⋅𝐼𝑄𝑅 >Q3+1.5⋅IQR
 #18 deq-den davam et 
 #endregion
 
@@ -2530,31 +2524,3 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 
-#9)Decision tree her bolumde entrotpy azalatmaga calisir. ve informatin gain dustur after-before dur.
-
-
-
-
-#10)Random forest-de hamisi bir isleyir .ozunden evvelki agaclardan sehvini oyrenir.
-
-
-
-#11)WordVector ile OneHotEncoder ferqi nedir?
-
-
-#OneHotEnconder ancaq kodlasdirirdi.
-
-#ama Word Vecvtor hem kodlasdirir ve soz menaca yaxinliq reqemlereini de saxlayir.]
-
-
-
-
-#12)Extreme Gradient boosting ile Gradient boosting ferqi
-
-# Extreme Gradient boosting ozu regulazation edir.lazimsiz bolunmlere aradan cixarir. dahu suretli edir.
-
-
-
-#1.02-1.04 bax ve yaz....
-
-#1.07 daha deqiq yaz..

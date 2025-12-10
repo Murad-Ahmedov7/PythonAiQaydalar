@@ -2256,19 +2256,13 @@ c=torch.tensor([[1,2],[3,4]])
 # Buradakı “18” sadəcə — qatların sayıdır.
 # neye gore ResNet18?: Modelə “layer-ləri keçib getməyə” icazə verir → bu da dərin şəbəkələrdə yaranan vanishing gradient problemini öldürür.
 # ResNet-18-in üstünlükləri
-# Yüngül və sürətli(yox eslinde daha gec ama daha yaxsi isletyir)
+# Yüngül və sürətli
 # Az GPU RAM istəyir
 # Training-i stabil
 # Overfitting az olur
 # Transfer learning üçün çox əlverişli
 # Accuracy normaldır (ResNet50 qədər olmasa da)
 
-
-
-
-# 600 filter nə deməkdir?
-
-# Bir convolutional layer-də 600 filter var demək → layer 600 fərqli xüsusiyyət çıxarır.
 
 #endregion
 
@@ -2441,7 +2435,7 @@ c=torch.tensor([[1,2],[3,4]])
 # Aşağı outlier: 
 # <𝑄1 − 1.5 ⋅ 𝐼 𝑄 𝑅 <Q1−1.5⋅IQR
 
-# Yuxarı outlier: > 𝑄3+ 1.5⋅𝐼𝑄𝑅 >Q3+1.5⋅IQR
+# Yuxarı outlier: > 𝑄 3+ 1.5⋅𝐼𝑄𝑅 >Q3+1.5⋅IQR
 #18 deq-den davam et 
 #endregion
 
@@ -2449,112 +2443,6 @@ c=torch.tensor([[1,2],[3,4]])
 
 #3)corr ve cov nedir?
 
-# corr → -1 … +1 (xətti əlaqənin gücü və istiqaməti) ✅
-
-# cov → hər hansı bir ədəd (iki dəyişənin birlikdə dəyişmə meyli)
-
-
-#4)Error metrics/Losst metrics nedir?
-
-# “Regression xətaları” (və ya “Error metrics / Loss metrics”) – bu terminlər MAE, MSE, R² və digər oxşar ölçüləri əhatə edir,
-# çünki bunlar proqnoz dəyərləri ilə real dəyərlər arasındakı fərqi ölçür.
-
-
-#5)Regression nedir ve hansi novleri var?
-
-
-
-# Regression → riyazi yolla davamlı (sayısal) dəyərlərin təxminini verir.
-
-
-
-# Sadə xətti regression (Simple Linear Regression) – bir müstəqil dəyişən, bir asılı dəyişən.
-
-# Çoxlu xətti regression (Multiple Linear Regression) – bir neçə müstəqil dəyişən, bir asılı dəyişən.
-
-# Polynomial regression – əlaqə xətti deyil, əyri (polynomial funksiyası).
-
-
-
-#6)One-Hot Encoding nedir ve Logictic reggression ile ferqi ?
-
-# One-Hot Encoding → məlumatı hazırlayır
-
-# Logistic Regression → hazırlanmış məlumatdan proqnoz çıxarır
-
-
-
-# One-Hot Encoding sadə dillə desək, kateqoriyalı (categorical) məlumatı rəqəmsal formaya çevirmək üsuludur.
-
-
-# Modeldir, yəni proqnoz verir.
-
-# Məqsəd: giriş dəyişənlərinə əsaslanaraq bir obyektin müəyyən kateqoriyaya aid olma ehtimalını təxmin etmək.
-
-
-
-#7)Ann nedir ve Neyron ve perceptorn nedir?
-
-
-# Ann insanin beynindeki neyron esaslanan neyron sebekeli Ai sistemidir.
-
-# Neyron burada nədir?
-
-# Hər bir qatın daxilindəki vahidlər “neyron” adlanır.
-
-# Neyron: girişləri alır, çəkilərlə çarpır, toplar və aktivasiya funksiyası ilə çıxış verir.
-
-# Yəni input layer-də hər “giriş” bir neyron kimi baxıla bilər, hidden və output qatlarında isə hesablama vahididir.
-
-# Perceptron burada nədir?
-
-# Perceptron = ən sadə tip neyron.
-
-
-# Bir perceptron-un tərkibi belədir:
-
-# Girişlər (inputs, x₁, x₂, …) → məlumatları qəbul edir
-
-# Çəkilər (weights, w₁, w₂, …) → hər girişi əhəmiyyətinə görə çarpır
-
-# Bias (b) → qərar sərhədini (threshold) tənzimləyir
-
-# Aktivasiya funksiyası (activation function, f) → toplamanın nəticəsini 0/1 (binary) və ya digər çıxışa çevirir
-
-
-
-#8)Sekiller ucun Ann-den Cnn-e kecmek ucun meqsed o idi ki ann sekillerei 2d den 1 deye cevirib o seklin uzerinde gezirdi deye seklin keyfiyyeti itirdi kecmek sebebi o idi.
-# ve hecmin ann de rengler de olculer de tam uygun deyildi. ve cnn her layer-a da filter tetbiq edir.
-
-
-
-
-
-#9)Decision tree her bolumde entrotpy azalatmaga calisir. ve informatin gain dustur after-before dur.
-
-
-
-
-#10)Random forest-de hamisi bir isleyir .ozunden evvelki agaclardan sehvini oyrenir.
-
-
-
-#11)WordVector ile OneHotEncoder ferqi nedir?
-
-
-#OneHotEnconder ancaq kodlasdirirdi.
-
-#ama Word Vecvtor hem kodlasdirir ve soz menaca yaxinliq reqemlereini de saxlayir.]
-
-
-
-
-#12)Extreme Gradient boosting ile Gradient boosting ferqi
-
-# Extreme Gradient boosting ozu regulazation edir.lazimsiz bolunmlere aradan cixarir. dahu suretli edir.
-
-
-
-#1.02-1.04 bax ve yaz....
-
-#1.07 daha deqiq yaz..
+  #corr- iki deyisen arasindaki xetti elaqeni gosterir (Dəyər aralığı: -1 … +1)
+  
+  #cov -iki deyisen arasindaki xetti elaqeni ve hemcinin gucunu gosterir.(Deyer araliqi )

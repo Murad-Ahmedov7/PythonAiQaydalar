@@ -2557,4 +2557,4 @@ c=torch.tensor([[1,2],[3,4]])
 
 #1.02-1.04 bax ve yaz....
 
-#1.07 daha deqiq yaz..
+#

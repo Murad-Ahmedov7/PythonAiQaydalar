@@ -2549,12 +2549,8 @@ c=torch.tensor([[1,2],[3,4]])
 
 
 
-#12)Extreme Gradient boosting ile Gradient boosting ferqi
-
-# Extreme Gradient boosting ozu regulazation edir.lazimsiz bolunmlere aradan cixarir. dahu suretli edir.
+#12)Extreme Gradient boosting ozu regulazation edir.lazimsiz bolunmlere aradan cixarir. dahu suretli edir.
 
 
 
 #1.02-1.04 bax ve yaz....
-
-#1.07 daha deqiq yaz..
